@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<style>
+  .red{
+    width:100px;
+    height:100px;
+    background: red;
+  }
+  .blue{
+    width:100px;
+    height:100px;
+    background: blue;
+  }
+  .green{
+    width:100px;
+    height:100px;
+    background: green;
+  }
+  .orange{
+    width:100px;
+    height:100px;
+    background: orange;
+  }
+</style>
+<body>
+  <p><button id='red'>touch me</button></p>
+  <div class="red"></div>
+  <p><button id='blue'>touch me</button></p>
+  <div class="blue"></div>
+  <p><button id='green'>touch me</button></p>
+  <div class="green"></div>
+  <p><button id='orange'>touch me</button></p>
+  <div class="orange"></div>
+  <script>
+  // $('button').click(function(){}); //下面為同效果的簡化函釋
+  $('#red').click(()=>{
+    $('.red').toggle(5000);
+  });
+  $('#blue').click(()=>{
+    // $('.blue').fadeToggle('fast');
+    $('.blue').fadeToggle(3000,()=>{alert(123)});
+  });
+  $('#green').click(()=>{
+    $('.green').slideToggle(1000);
+  });
+  $('#orange').click(()=>{
+    let chk=$('.orange').css('display');
+    if(chk!='none'){
+      $('.orange').animate({
+        "width": "0px"
+      }, 1000, () => {
+        $('.orange').removeAttr("style");
+        $('.orange').css("display", "none");
+      });
+    }
+    else{
+      $('.orange').removeAttr("style");
+      $('.orange').css("width","0px");
+      $('.orange').animate({
+        "width": "100px"
+      }, 1000, () => {
+        $('.orange').removeAttr("style");
+      });
+    }
+  });
+  </script>
+</body>
+</html>

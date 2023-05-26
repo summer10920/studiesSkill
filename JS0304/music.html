@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <script>
+    var audio = new Audio();
+
+    function mygetcode() {
+      console.log(event.keyCode);
+      switch (event.keyCode) {
+        case 65: //a
+          audio.src="sounds/boom.wav";
+          audio.play();
+          break;
+        case 68: //d
+          audio.src = "sounds/clap.wav";
+          audio.play();
+          break;
+        case 87: //w
+          audio.src = "sounds/hihat.wav";
+          audio.play();
+          break;
+        case 83: //s
+          audio.src = "sounds/kick.wav";
+          audio.play();
+          break;
+        case 78: //n
+          audio.src = "sounds/openhat.wav";
+          audio.play();
+          break;
+        case 77: //m
+          audio.src = "sounds/ride.wav";
+          audio.play();
+          break;
+      }
+    }
+    document.onkeydown = mygetcode;
+  </script>
+</body>
+
+</html>

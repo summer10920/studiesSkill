@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<style>
+  body {
+    background: black;
+    margin: 0;
+  }
+
+  #clock1 {
+    width: 740px;
+    height: 100px;
+    background: #43434342;
+    margin: 20vh auto;
+    padding: 10px;
+    display: flex;
+  }
+
+  .ck {
+    width: 200px;
+    height: 100px;
+    background: #333;
+    display: inline-flex;
+  }
+
+  .cc {
+    width: 50px;
+    height: 100px;
+    margin: 0 10px;
+    background: url(number.png);
+    background-position: 50px;
+    background-color: #333;
+  }
+
+  .c1,.c2,.c3,.c4,.c5,.c6,.c7,.c8,.c9,.c0 {
+    width: 100px;
+    height: 100px;
+    background: url(number.png);
+  }
+
+  .c1 {
+    background-position: -100px;
+  }
+
+  .c2 {
+    background-position: -200px;
+  }
+
+  .c3 {
+    background-position: -300px;
+  }
+
+  .c4 {
+    background-position: -400px;
+  }
+
+  .c5 {
+    background-position: -500px;
+  }
+
+  .c6 {
+    background-position: -600px;
+  }
+
+  .c7 {
+    background-position: -700px;
+  }
+
+  .c8 {
+    background-position: -800px;
+  }
+
+  .c9 {
+    background-position: -900px;
+  }
+
+  .c0 {
+    background-position: 0px;
+  }
+
+  #clock2 {
+    width: 600px;
+    height: 300px;
+    /* color:white; */
+    font-family: 'Share Tech Mono', monospace;
+    margin: 50px auto;
+    text-align: center;
+    letter-spacing: 0.5em;
+    display: table;
+    animation: light 30s linear infinite;
+  }
+
+  .v-centor {
+    display: table-cell;
+  }
+
+  #clk2-time {
+    font-size: 80px;
+    margin: 40px 0;
+  }
+
+  #clk2-date {
+    font-size: 30px;
+    margin: 0;
+  }
+
+  @keyframes light {
+    from {
+      color: hsla(0, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(0, 100%, 60%, 1), 0 0 200px hsla(0, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(0, 100%, 60%, 1), 0 0 1200px hsla(0, 100%, 30%, 1);
+    }
+
+    10% {
+      color: hsla(36, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(36, 100%, 60%, 1), 0 0 30px hsla(36, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(36, 100%, 60%, 1), 0 0 200px hsla(36, 100%, 30%, 1);
+    }
+
+    20% {
+      color: hsla(72, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(72, 100%, 60%, 1), 0 0 200px hsla(72, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(72, 100%, 60%, 1), 0 0 1200px hsla(72, 100%, 30%, 1);
+    }
+
+    30% {
+      color: hsla(108, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(108, 100%, 60%, 1), 0 0 30px hsla(108, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(108, 100%, 60%, 1), 0 0 200px hsla(108, 100%, 30%, 1);
+    }
+
+    40% {
+      color: hsla(144, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(144, 100%, 60%, 1), 0 0 200px hsla(144, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(144, 100%, 60%, 1), 0 0 1200px hsla(144, 100%, 30%, 1);
+    }
+
+    50% {
+      color: hsla(180, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(108, 100%, 60%, 1), 0 0 30px hsla(108, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(108, 100%, 60%, 1), 0 0 200px hsla(108, 100%, 30%, 1);
+    }
+
+    60% {
+      color: hsla(216, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(216, 100%, 60%, 1), 0 0 200px hsla(216, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(216, 100%, 60%, 1), 0 0 1200px hsla(216, 100%, 30%, 1);
+    }
+
+    70% {
+      color: hsla(252, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(252, 100%, 60%, 1), 0 0 30px hsla(252, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(252, 100%, 60%, 1), 0 0 200px hsla(252, 100%, 30%, 1);
+    }
+
+    80% {
+      color: hsla(288, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(288, 100%, 60%, 1), 0 0 200px hsla(288, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(288, 100%, 60%, 1), 0 0 1200px hsla(288, 100%, 30%, 1);
+    }
+
+    90% {
+      color: hsla(324, 100%, 95%, 1);
+      text-shadow: 0 0 10px hsla(324, 100%, 60%, 1), 0 0 30px hsla(324, 100%, 30%, 1);
+      box-shadow: inset 0 0 40px hsla(324, 100%, 60%, 1), 0 0 200px hsla(324, 100%, 30%, 1);
+    }
+
+    to {
+      color: hsla(360, 100%, 95%, 1);
+      text-shadow: 0 0 40px hsla(360, 100%, 60%, 1), 0 0 200px hsla(360, 100%, 30%, 1);
+      box-shadow: inset 0 0 80px hsla(360, 100%, 60%, 1), 0 0 1200px hsla(360, 100%, 30%, 1);
+    }
+  }
+</style>
+
+<body>
+  <div id="clock1">
+    <span class="ck">
+      <span id="ck1" class="c1"></span>
+      <span id="ck2" class="c2"></span>
+    </span>
+    <span class="cc"></span>
+    <span class="ck">
+      <span id="ck3" class="c3"></span>
+      <span id="ck4" class="c4"></span>
+    </span>
+    <span class="cc"></span>
+    <span class="ck">
+      <span id="ck5" class="c5"></span>
+      <span id="ck6" class="c6"></span>
+    </span>
+  </div>
+
+
+  <div id="clock2">
+    <div class="v-centor">
+      <p id="clk2-time">12:00:00</p>
+      <p id="clk2-date">2019-08-05 MON</p>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <script>
+    var n_day = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    function chk0(num) {
+      // if(num<10) return "0"+num;
+      // else return num;
+      return num < 10 ? "0" + num : num;
+    }
+    function retime() {//執行DOM的變化
+      setTimeout(retime, 1000); //1秒之後，去跑retime這個動作
+
+      let nt = new Date();
+      let n_hour = nt.getHours();
+      let n_min = nt.getMinutes();
+      let n_sec = nt.getSeconds();
+
+      let n_year = nt.getFullYear();
+      let n_moth = nt.getMonth();
+      let n_date = nt.getDate();
+      let day_item = nt.getDay();
+
+      /*clk1 start*/
+      //時分秒的個位數 by clk1
+      let n_hx = n_hour % 10;
+      let n_mx = n_min % 10;
+      let n_sx = n_sec % 10;
+
+      //時分秒的十位數 by clk1
+      let n_ht = Math.floor(n_hour / 10);
+      let n_mt = Math.floor(n_min / 10);
+      let n_st = Math.floor(n_sec / 10);
+
+      document.getElementById("ck1").className="c" + n_ht;
+      document.getElementById("ck2").className = "c" + n_hx;
+      document.getElementById("ck3").className = "c" + n_mt;
+      document.getElementById("ck4").className = "c" + n_mx;
+      document.getElementById("ck5").className = "c" + n_st;
+      document.getElementById("ck6").className = "c" + n_sx;
+
+      document.getElementsByClassName("cc")[0].style.opacity = 1;
+      document.getElementsByClassName("cc")[1].style.opacity = 1;
+
+      //有兩行dom晚500毫秒執行
+      setTimeout(function () {
+        document.getElementsByClassName("cc")[0].style.opacity = 0;
+        document.getElementsByClassName("cc")[1].style.opacity = 0;
+      }, 500);
+      /*clk1 end*/
+
+      /*clk2 start*/
+      document.getElementById("clk2-time").textContent = `
+          ${chk0(n_hour)}:${chk0(n_min)}:${chk0(n_sec)}
+        `;
+      document.getElementById("clk2-date").textContent = `
+          ${n_year}-${chk0(n_moth + 1)}-${chk0(n_date)} ${n_day[day_item]}
+        `;
+      /*clk2 end*/
+    }
+
+    retime();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .blue{
+      color:blue;
+      font-size:2em;
+    }
+    .hot{
+      color:#ff0000;
+    }
+  </style>
+  <!-- <script src="js/jquery-3.4.1.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+  <div id="page">
+    <h1 id="header">My JQ DEMO Lists</h1>
+    <h2 style="display:none">我的代辦事項</h2>
+    <button>H2開關</button>
+    <ul>
+      <li id="one" class="hot"><b>買</b>晚餐</li>
+      <li id="two" class="hot">練程式</li>
+      <li id="three" class="hot">打電動</li>
+      <li id="four">去洗澡</li>
+    </ul>
+  </div>
+  <div>
+    <p>hello world</p>
+  </div>
+  <input type="text" name="student" value="loki">
+  <input type="text" name="math" value="99">
+  <input type="submit" value="送出">
+</body>
+<script>
+$('button').click(function(){
+  $('h2').toggle();
+});
+
+</script>
+</html>

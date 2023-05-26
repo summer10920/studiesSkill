@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    window.onload = function () {
+      /*
+      document.write(`距離今天只剩下${bday}天 ${bhur}時 ${bmin}分 ${bsec}秒!!`);//在document生成的過程中，可以被解讀並執行他
+      //document.wirte不可以在document解完成之後再寫入，會導致document的原文整個被更動，此時你應該使用DOM來對已存在的document做修改調整
+      */
+      window.document.getElementById("demo").textContent = `距離今天只剩下${bday}天 ${bhur}時 ${bmin}分 ${bsec}秒!!`;
+      //對已經生成完畢的document進行節點上進行調整修改
+    }
+  </script>
+  <h1>今日可用時間</h1>
+  <p id="demo">AAAA</p>
+  <h1>時間就是本錢</h1>
+<script src="time.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  #adFull {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    text-align: center; 
+
+  }
+
+  #adContent {
+    margin: 15vh auto;
+    cursor: pointer;
+    max-width: 90vw;
+  }
+
+  #adClose {
+    position: absolute;
+    top: 133px;
+    left: 50%;
+    margin-left: 270px;
+    cursor: pointer;
+    font-size: 1em;
+    background: #eee;
+    border-radius: 1em;
+    border: 3px solid #000;
+    line-height: 0;
+  }
+
+  #adClose:hover {
+    background: #ccc;
+  }
+</style>
+
+<body>
+  <div id="adFull" onclick="adclose()">
+    <!--以HTML先宣告onclick響應為何-->
+    <img src="ad.png" id="adContent" onclick="adgoto()">
+    <div id="adClose"><i class="material-icons">close</i></div>
+  </div>
+
+  <script>
+    document.getElementById("adFull").onclick = adclose; //以JSDOM方式去指定該物件的onclick響應為何
+    document.getElementById("adContent").onclick = adgoto; //以JSDOM方式去指定該物件的onclick響應為何
+    // document.getElementById("adClose").onclick = adclose; //以JSDOM方式去指定該物件的onclick響應為何
+
+    function adclose() {
+      document.getElementById("adFull").style.display = "none";
+    }
+    function adgoto() {
+      window.open("https://www.google.com.tw", "_blank");
+    }
+
+    function findCookie(name){ //檢查cookie的小程式，每次丟cookie的索引名稱近來，如果有找到回傳此對應的值，沒有則會回傳false
+      var chkary=document.cookie.split("; ")
+      var getck=chkary.find(function(e){  
+        return (name+'=')===e.substr(0,name.length+1);  // return overmydeadbody=789 -> getck="overmydeadbody=789"
+      });// 
+      if(getck!=undefined) return getck.split("=")[1]; //有找到，getck變陣列 => [overmydeadbody,789] 取第[1]格
+      else return false;  //沒找到，告訴我false
+    }
+
+    var eatcook=findCookie("watched");
+    if(!eatcook){ //若成立，代表cookie還沒設定
+      var endtime=new Date();
+      endtime.setHours(23);
+      endtime.setMinutes(59);
+      endtime.setSeconds(59);
+      document.cookie="watched=yes;expires="+endtime.toUTCString();
+    }
+    else{
+      // document.getElementById("adFull").style.display="none";//對該節點增加style.display:none
+      document.getElementById("adFull").remove();//移除整個該節點
+    }
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div id="myblock" style="width:100px;height:100px;background:red"></div>
+  <hr>
+  <input type="button" value="正方形" onclick="trans('A')">
+  <input type="button" value="園形" onclick="trans('B')">
+  <input type="button" value="三角形" onclick="trans('C')">
+  <p>Color Code: <input type="text" id="color" onchange="getclr()"></p>
+  <script>
+    /*課堂練習，新增一個div透過CSS，這個同一個DIV有三種外觀，正方形，圓形，三角形希望CSS顏色有變化*/
+    var zone = document.getElementById("myblock");
+    var clr = "red";
+    var flag = "A";
+    function trans(who) {
+      switch (who) {
+        case 'A':
+          zone.style = "width: 100px;height: 100px;background: " + clr + ";";
+          flag = "A";
+          break;
+        case 'B':
+          zone.style = `width: 100px;height: 100px;background: ${clr};border-radius: 50px;`;
+          flag = "B";
+          break;
+        case 'C':
+          zone.style = `width: 0;height: 0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-bottom: 100px solid ${clr};`;
+          flag = "C";
+          break;
+      }
+    }
+    function getclr() {
+      clr = document.getElementById("color").value;
+      trans(flag);
+    }
+  </script>
+</body>
+
+</html>

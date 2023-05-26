@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <input type="button" value="try me" id="ock">
+  <input type="button" value="清除左邊按鈕的滑入事件" onclick="clrover()">
+
+  <script>
+  var mybtn=document.getElementById("ock");
+  mybtn.addEventListener("click",function(){
+    alert("it's a click");
+  });
+  mybtn.addEventListener("mouseover",myfun);
+  mybtn.addEventListener("mouseover", myfun2);
+  
+  function myfun(){
+    console.log("it's a mouseover");
+  }
+  function myfun2(){
+    console.log("you can add more different actions in same event");
+  }
+  function clrover(){
+    mybtn.removeEventListener("mouseover",myfun);
+  }
+  </script>
+</body>
+</html>

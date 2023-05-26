@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  <h1>my list</h1>
+  <ul id="demo" >
+    <li class="list"><h3>apple</h3></li>
+    <li class="list">banana</li>
+  </ul>
+  <script>
+/*
+    var obj=document.getElementById("demo");
+    obj.innerHTML="<li>AAA</li><li>BBB</li><li>CCC</li>";
+
+    alert(document.getElementById("demo").innerHTML);
+    document.getElementById("demo").innerHTML="<li>AAA</li><li>BBB</li><li>CCC</li>";
+
+    alert(obj.innerHTML);//抓HTML
+    alert(obj.textContent);//抓文字內容
+
+    obj.innerHTML="<li>AAA</li><li>BBB</li><li>CCC</li>";
+    // obj.innerText="<li>AAA</li><li>BBB</li><li>CCC</li>"; //firefox no-ok
+
+    obj.textContent = "<li>AAA</li><li>BBB</li><li>CCC</li>";//ie8 no ok
+
+    var cls = document.getElementsByClassName("list");
+    console.log(cls[0].innerHTML);
+    console.log(cls[0].textContent);
+
+    cls[1].innerHTML = "<h3>BBBBB</h3>";
+*/
+    var tag=document.getElementsByTagName("h3");
+    console.log(tag[0].textContent);
+    tag[0].textContent="orange";
+
+  </script>
+</body>
+</html>

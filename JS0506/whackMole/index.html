@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <style>
+    body {
+      margin: 0;
+      text-align: center;
+    }
+
+    .content {
+      margin: 10% auto;
+      position: relative;
+      display: inline-block;
+    }
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      background: yellow;
+      width: 100px;
+      height: 100px;
+      border: 5px solid #aabceb;
+      cursor: pointer;
+    }
+
+    .control {
+      margin: 10px auto;
+    }
+
+    #time,
+    #combo {
+      width: 35%;
+    }
+
+    button {
+      width: 30%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="row">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(0)">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(1)">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(2)">
+    </div>
+    <div class="row">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(3)">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(4)">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(5)">
+    </div>
+    <div class="row">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(6)">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(7)">
+      <img src="img/state.png" class="cell" title="state" onclick="getcombo(8)">
+    </div>
+    <div class="control">
+      <div style="width:100%;display: flex;">
+        <span id="time">剩餘時間:60s</span>
+        <button>遊戲開始</button>
+        <span id="combo">成績分數:0</span>
+      </div>
+      <hr>
+      <b>遊戲說明</b>
+      <p>打地鼠遊戲，請透過數字鍵盤1~9進行敲打</p>
+      <hr>
+    </div>
+  </div>
+  <script>
+    var btn = document.getElementsByTagName("button")[0];
+    var time = document.getElementById("time");
+    var combo = document.getElementById("combo");
+    var flag = 0;  //0=遊戲未開始,1=遊戲進行中
+    var sec = 0;
+    var count = 0;
+    var animal = document.getElementsByClassName("cell");
+    var wait = new Array(); //存放所有紅燈的timeout事件
+
+    btn.addEventListener("click", gamestart);
+
+    function gamestart() { //遊戲開始
+      /*遊戲初始化*/
+      flag = 1;
+      sec = 60;
+      count = 0;
+      time.textContent = "剩餘時間:60s";
+      combo.textContent = "成績分數:0";
+      btn.removeEventListener("click", gamestart);
+      btn.textContent = "！開打！";
+
+      /*遊戲時間倒數*/
+      var start = setInterval(function () {
+        if (sec == 0) {
+          clearInterval(start);
+          flag = 0;
+          btn.addEventListener("click", gamestart);
+          btn.textContent = "重新開始";
+        }
+        else {
+          sec--;
+          time.textContent = "剩餘時間:" + sec + "s";
+        }
+      }, 1000);
+
+      for (let i = 0; i < 100; i++) {
+        let timeout = Math.floor(Math.random() * 57000);  //range 1~60sec=>1~57'000 "minisec"
+        let who = Math.floor(Math.random() * 9);  //range 0~8
+        let delay = Math.floor(Math.random() * 3) + 1; //range 1~3
+
+        setTimeout(function () {
+          showAnimal(who, delay, i);
+        }, timeout);
+      }
+    }
+    function showAnimal(who, delay, id) { //紅燈事件
+      if (animal[who].title != "state") {//此時正在忙，不要塞紅燈進來
+        // let next=(who+1)%9; //方法1 某值除9取餘數，得到0~8之間 
+        // if(who==8) next=0; //方法2，同方法1效果
+        // else next=who+1;
+        // next=(who==8)?0:(who+1); //方法3，同方法1效果
+        next = Math.floor(Math.random() * 9);//方法4 重新再骰位置
+        setTimeout(function () {
+          showAnimal(next, delay, id);
+        }, 100);//改位置這件事不要太快執行，當遇到9格都是非黃燈時，以電腦效率會瞬間重跑上萬次導致crash
+      }
+      else {//此時是黃燈，可以變化為紅燈
+        /*進行黃燈變紅燈動作*/
+        animal[who].src = "img/on.png";
+        animal[who].style.backgroundColor = "red";
+        animal[who].title = "hungry";
+        animal[who].alt = id;
+
+        /*多久之後紅燈變黃燈*/
+        wait[id] = setTimeout(function () {
+          animal[who].src = "img/state.png";
+          animal[who].style.backgroundColor = null; //清掉style的BGColor
+          animal[who].title = "state";
+          animal[who].removeAttribute("alt");
+        }, delay * 1000);
+      }
+    }
+    /*鍵盤事件*/
+    document.onkeydown = keyboard;
+    function keyboard() {
+      let num;
+      switch (event.keyCode) {
+        case 103:
+          num = 0; break;
+        case 104:
+          num = 1; break;
+        case 105:
+          num = 2; break;
+        case 100:
+          num = 3; break;
+        case 101:
+          num = 4; break;
+        case 102:
+          num = 5; break;
+        case 97:
+          num = 6; break;
+        case 98:
+          num = 7; break;
+        case 99:
+          num = 8; break;
+      }
+      if (num != null) getcombo(num); //當只有抓到num有值才會跑到綠燈事件
+    }
+
+
+    /*觸發綠燈事件*/
+    function getcombo(who) {
+      if (flag && animal[who].title == "hungry") { //確認目標為紅燈
+        console.log(1);
+        /*進行紅燈變綠燈*/
+        animal[who].src = "img/off.png";
+        animal[who].style.backgroundColor = "green";
+        animal[who].title = "eating";
+        let id = animal[who].alt;
+        clearTimeout(wait[id]);
+        /*算分數*/
+        count++;
+        combo.textContent = "成績分數:" + count;
+
+        /*多久之後綠燈變黃燈*/
+        setTimeout(function () {
+          animal[who].src = "img/state.png";
+          animal[who].style.backgroundColor = null; //清掉style的BGColor
+          animal[who].title = "state";
+          animal[who].removeAttribute("alt");
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+
+</html>

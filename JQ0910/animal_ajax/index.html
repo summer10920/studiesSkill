@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    thead {
+      background: #eee;
+    }
+
+    textarea {
+      height: 2em;
+      width: 98%;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+  <table width="100%">
+    <thead>
+      <tr>
+        <th>編號</th>
+        <th>動物名</th>
+        <th>重量</th>
+        <th>簡介</th>
+        <th>更新日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 塞入來自ajax的訊息 -->
+    </tbody>
+  </table>
+
+  <script>
+    //select動作：請求後端的動物資料
+    $.post("api.php?do=select", function (re) {
+      $('tbody').html(re); //塞入來自ajax的訊息
+      $('.mdy').click(changeinput);
+    });
+
+    function changeinput() {
+      // console.log(this);
+      // let aa=$(this).parents('tr').children();
+      let bb = $(this).parent().siblings();
+      bb.parent().html(`
+        <td><input type="hidden" name="id" value="${bb.eq(0).text()}">${bb.eq(0).text()}</td>
+        <td><input type="text" name="name" value="${bb.eq(1).text()}"></td>
+        <td><input type="text" name="weight" value="${bb.eq(2).text()}"></td>
+        <td><textarea name="info">${bb.eq(3).text()}</textarea></td>
+        <td>${bb.eq(4).text()}</td>
+        <td><button onclick="changetext(this)">儲存</button></td>
+      `);
+      // $('.ud').click(changetext);
+    }
+
+    function changetext(who) {
+      let cc = $(who).parent().siblings();
+
+      /*將欲更新的資料，打包成object ( 因ajax會自動幫object變成$_POST[] )*/
+      const data = {
+        id: cc.eq(0).children().val(),
+        name: cc.eq(1).children().val(),
+        weight: cc.eq(2).children().val(),
+        info: cc.eq(3).children().val()
+      };
+      // console.log(data);
+
+      //到url提交object(也就是該處收取post)，該處的顯示訊息以re方式為變數取回
+      $.post("api.php?do=update", data, function (re) {
+        // alert(re);
+
+        /* 處理完畢後將tr內部html部分，變回純文字之td */
+        cc.parent().html(`
+          <td>${data.id}</td>
+          <td>${data.name}</td>
+          <td>${data.weight}</td>
+          <td>${data.info}</td>
+          <td>${re}</td>
+          <td>
+            <button class="mdy">修改</button>
+            <button>刪除</button>
+          </td>
+        `);
+        $('.mdy').click(changeinput);
+      });
+      // console.log(cc.eq(0).children().val());
+    }
+    function del(who){
+      let id=$(who).parent().siblings().eq(0).text();
+      $.post("api.php?do=delete",{id},function(re){
+        if(re=="deleted") $(who).parents('tr').remove();
+      });
+    }
+  </script>
+</body>
+
+</html>

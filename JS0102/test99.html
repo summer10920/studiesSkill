@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <script>
+    //99乘法表，版型不要求，能明顯的提供資訊讓人看得懂就好。
+    //如果可以的話，請高手用一個for就寫出來
+    for(let i=1,j=1;i<10;j++){
+      document.write(`${i}*${j}=${i*j}<br>`);
+      if(j==9){
+        i++,j=0;
+        document.write("<hr>");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+  <script>
+    //ajax是JS來取得別處的資料
+    //$.getJSON('https://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?$format=json')
+    // $.getJSON('https://data.tycg.gov.tw/opendata/datalist/datasetMeta/download?id=f4cc0b12-86ac-40f9-8745-885bddc18f79&rid=0daad6e6-0632-44f5-bd25-5e1de1e9146f')
+    //   .done(function (re) {
+    //     console.log(re);
+    //   });
+  $.getJSON('curl_ajax_api.php').done(function (re) {
+        console.log(re);
+      });
+
+  </script>
+
+
+
+</body>
+
+</html>

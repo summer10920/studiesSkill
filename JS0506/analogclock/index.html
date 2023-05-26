@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background: #ccc;
+      text-align: center;
+    }
+
+    h3 {
+      position: relative;
+      z-index: 999;
+    }
+
+    .circle {
+      width: 300px;
+      height: 300px;
+      background: white;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 300px;
+      display: inline-block;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .jsec1 {
+      width: 4px;
+      height: 50%;
+      background: #F00;
+      position: absolute;
+      left: 50%;
+      top: 5%;
+      margin-left: -2px;
+    }
+
+    .jmin1 {
+      width: 10px;
+      height: 45%;
+      background: #0F0;
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      margin-left: -5px;
+    }
+
+    .jhour1 {
+      width: 10px;
+      height: 30%;
+      background: #00F;
+      position: absolute;
+      left: 50%;
+      top: 25%;
+      margin-left: -5px;
+    }
+
+    .zsec1 {
+      width: 300px;
+      height: 300px;
+      animation: j_s 60s infinite linear;
+      /* animation: j_s 1s infinite linear; */
+      position: absolute;
+    }
+
+    .zmin1 {
+      width: 300px;
+      height: 300px;
+      animation: j_m 3600s infinite linear;
+      /* animation: j_m 60s infinite linear; */
+      position: absolute;
+    }
+
+    .zhour1 {
+      width: 300px;
+      height: 300px;
+      animation: j_h 43200s infinite linear;
+      /* animation: j_h 720s infinite linear; */
+      position: absolute;
+    }
+    .jsec2{
+      width:16px;
+      height:300px;
+      position: absolute;
+      background: url('img/imgs.png');
+      left:50%;
+      margin-left:-8px;
+      animation: j_s 60s infinite linear;
+    }
+    .jmin2{
+      width:16px;
+      height:300px;
+      position: absolute;
+      background: url('img/imgm.png');
+      left:50%;
+      margin-left:-8px;
+      animation: j_m 3600s infinite linear;
+    }
+    .jhour2{
+      width:16px;
+      height:300px;
+      position: absolute;
+      background: url('img/imgh.png');
+      left:50%;
+      margin-left:-8px;
+      animation: j_h 43200s infinite linear;
+    }
+    .osec3{
+      animation: j_s 60s infinite linear;
+      transform-origin: 50% 90%;
+    }
+    .omin3{
+      animation: j_m 3600s infinite linear;
+      transform-origin: 50% 85%;
+    }
+    .ohour3{
+      animation: j_h 43200s infinite linear;
+      transform-origin: 50% 80%;
+    }
+    .osec4{
+      transform-origin: 50% 90%;
+    }
+    .omin4{
+      transform-origin: 50% 85%;
+    }
+    .ohour4{
+      transform-origin: 50% 80%;
+    }
+  </style>
+  <script>
+    /*
+    小時的位置變化12*60(分鐘) 分配到 360°=> 每過一分鐘角度增加0.5°
+    時針的角度計算方式分為兩步驟
+    第一步驟，先把整點算出來，譬如11點整，角度為11*30°
+    第二步驟，根據分鐘經過多久，時針增加多少度。譬如經過29分，那角度會從步驟1再多了29*0.5°
+    換言之 
+    11:29=> 11*30+29*0.5=>344.5°
+    11:59=>11*30+59*0.5=330+29.5=359.5°
+    */
+    var time = new Date();
+    var pos_s = time.getSeconds();
+    var pos_m = time.getMinutes();
+    var pos_h = time.getHours();
+    var x=pos_s*6;
+    var y=pos_m*6;
+    var z=(pos_h*30)+(pos_m*0.5);
+    document.write(`
+      <style>
+        @keyframes j_s {
+          from {transform: rotate(${x}deg);}
+          to {transform: rotate(${x + 360}deg);}
+        }
+        @keyframes j_m {
+          from {transform: rotate(${y}deg);}
+          to {transform: rotate(${y + 360}deg);}
+        }
+        @keyframes j_h {
+          from {transform: rotate(${z}deg);}
+          to {transform: rotate(${z + 360}deg);}
+        }
+      </style>
+  `);
+  </script>
+</head>
+
+<body>
+  <div class="circle">
+    <div class="zmin1">
+      <div class="jmin1"></div>
+    </div>
+    <div class="zhour1">
+      <div class="jhour1"></div>
+    </div>
+    <div class="zsec1">
+      <div class="jsec1"></div>
+    </div>
+    <h3>CSS Animation+雙DIV<br>表示法</h3>
+  </div>
+  <div class="circle">
+    <div class="jmin2"></div>
+    <div class="jhour2"></div>
+    <div class="jsec2"></div>
+    <h3>CSS Animation+圖片<br>表示法</h3>
+  </div>
+  <div class="circle">
+    <div class="jmin1 omin3"></div>
+    <div class="jhour1 ohour3"></div>
+    <div class="jsec1 osec3"></div>
+    <h3>CSS Animation+中心偏移<br>表示法</h3>
+  </div>
+  <div class="circle">
+    <div class="jmin1 omin4"></div>
+    <div class="jhour1 ohour4"></div>
+    <div class="jsec1 osec4"></div>
+    <h3>setInterval+中心偏移<br>表示法</h3>
+    <button id="ctrl" onclick="ctl(this)">STOP</button>
+  </div>
+  <script>
+    document.getElementsByClassName("osec4")[0].style.transform="rotate("+x+"deg)";
+    document.getElementsByClassName("omin4")[0].style.transform = "rotate(" + y + "deg)";
+    document.getElementsByClassName("ohour4")[0].style.transform = "rotate(" + z + "deg)";
+    var loop=setInterval(overwritetime,1000);
+
+    function overwritetime(){
+      time = new Date();
+      pos_s = time.getSeconds();
+      pos_m = time.getMinutes();
+      pos_h = time.getHours();
+      x = pos_s * 6;
+      y = pos_m * 6;
+      z = (pos_h * 30) + (pos_m * 0.5);
+      document.getElementsByClassName("osec4")[0].style.transform = "rotate(" + x + "deg)";
+      document.getElementsByClassName("omin4")[0].style.transform = "rotate(" + y + "deg)";
+      document.getElementsByClassName("ohour4")[0].style.transform = "rotate(" + z + "deg)";
+    }
+
+    function ctl(who){
+      // console.log(who);
+      if(who.textContent!="PLAY"){
+        clearInterval(loop);
+        who.textContent="PLAY";
+      }
+      else{
+        loop = setInterval(overwritetime, 1000);
+        who.textContent = "STOP";
+      }
+    }
+    /*
+    var btn=document.getElementById("ctrl");
+    btn.addEventListener("click",function(){
+      if(btn.textContent!="PLAY"){
+        clearInterval(loop);
+        btn.textContent="PLAY";
+      }
+      else{
+        loop = setInterval(overwritetime, 1000);
+        btn.textContent = "STOP";
+      }
+    });
+    */
+  </script>
+</body>
+
+</html>

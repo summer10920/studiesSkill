@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <p id="demo">按我按我</p>
+
+
+  <script>
+    function add() {
+      var newbtn=document.createElement("button");
+      newbtn.textContent="YA";
+      document.body.appendChild(newbtn);
+    }
+    document.getElementById("demo").onclick=function(){
+      add();
+    }
+
+
+  </script>
+</body>
+
+</html>

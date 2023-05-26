@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/Chart.min.css">
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/Chart.min.js"></script>
+</head>
+
+<body>
+  <h1>北部地區一周平均溫度表</h1>
+  <canvas id="weatherChart" width="4" height="1"></canvas>
+  <script>
+    // var data;
+    $.getJSON('https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-D0047-091?Authorization=CWB-77F7EF76-6578-458C-ACDF-72ABF4BE7727&downloadType=WEB&format=JSON')
+      .done(function (re) {
+        console.log(re);
+        /*簡化API的長度*/
+        let kl = re.cwbopendata.dataset.locations.location[13];
+        let tp = re.cwbopendata.dataset.locations.location[16];
+        let nt = re.cwbopendata.dataset.locations.location[18];
+        let tu = re.cwbopendata.dataset.locations.location[21];
+
+        /*資料初始化*/
+        let kl_m = new Array(), tp_m = new Array(), nt_m = new Array(), tu_m = new Array();
+        let x_date = new Array();
+
+        for (let i = 0; i < kl.weatherElement[0].time.length; i++) {
+
+          /*收集各城市的溫度*/
+          kl_m.push(kl.weatherElement[0].time[i].elementValue.value);
+          tp_m.push(tp.weatherElement[0].time[i].elementValue.value);
+          nt_m.push(nt.weatherElement[0].time[i].elementValue.value);
+          tu_m.push(tu.weatherElement[0].time[i].elementValue.value);
+
+          x_date.push(kl.weatherElement[0].time[i].startTime.substring(0, 13));
+        }
+
+        var ctx = document.getElementById('weatherChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: x_date,
+            datasets: [{
+              label: '基隆市',
+              data: kl_m,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '台北市',
+              data: tp_m,
+              backgroundColor: 'rgba(255, 206, 86, 0.2)',
+              borderColor: 'rgba(255, 206, 86, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '新北市',
+              data: nt_m,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '桃園市',
+              data: tu_m,
+              backgroundColor: 'rgba(153, 102, 255, 0.2)',
+              borderColor: 'rgba(153, 102, 255, 1)',
+              borderWidth: 1
+            }
+            ]
+          }
+        });
+
+      });
+
+
+
+
+  </script>
+</body>
+
+</html>

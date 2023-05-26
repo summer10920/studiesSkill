@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<!-- <input type="button" value="onclick demo" onclick="alert('hello world');"> -->
+	<input type="button" value="onclick AA+DD" onclick="showalert('AA')" onmouseover="showalert('DD')">
+	<span onclick="showalert('BB')">onclick BB</span>
+	<hr>
+	<input type="button" value="on click" onclick="whatis(this)">
+	<input type="button" value="on mouse down" onmousedown="whatis(this)">
+	<input type="button" value="on mouse up" onmouseup="whatis(this)">
+	<input type="button" value="on mouse over" onmouseover="whatis(this)">
+	<input type="button" value="on mouse out" onmouseout="whatis(this)">
+	<input type="button" value="on mouse out" onmousemove="whatis(this)">
+	<input type="text" value="on change" onchange="whatis(this)">
+	<input type="text" value="on focus" onfocus="whatis(this)">
+	<input type="text" value="on blur" onblur="whatis(this)">
+
+	<div id="fakeBtn"></div>
+
+
+	<script>
+		function showalert(meg) {
+			alert('hello world' + meg);
+		}
+		function whatis(e) {
+			console.log(e.value);
+			// e.style="color:red;font-size:30px";
+			// if(e.style.color=="red") e.style.color=null;
+			if (e.style.color == "red") e.style = null;
+			else e.style = "color:red;font-size:30px";
+			// e.onclick=null;
+		}
+
+		var fake_btn = document.getElementById("fakeBtn");
+		fake_btn.style = "background-color: aqua;box-shadow: 3px 3px 10px #333;cursor: pointer;padding: 5px;display: inline;";
+		fake_btn.textContent = "我是假按鈕";
+		fake_btn.onclick = function () {
+			// alert(fake_btn.style.backgroundColor);
+			alert(fake_btn.style.boxShadow);
+		};
+
+		function mygetcode() {
+			console.log(event.keyCode);
+			switch (event.keyCode) {
+				case 65: //a
+					console.log("←");
+					break;
+				case 68: //d
+					console.log("→");
+					break;
+				case 87: //w
+					console.log("↑");
+					break;
+				case 83: //s
+					console.log("↓");
+					break;
+				case 78: //n
+					console.log("B");
+					break;
+				case 77: //m
+					console.log("A");
+					break;
+			}
+		}
+		document.onkeydown = mygetcode;
+
+	</script>
+</body>
+
+</html>
