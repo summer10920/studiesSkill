@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write it!!</title>
+</head>
+
+<body>
+  <script>
+    //等待browser 已解析生成完畢 document後 才執行某函式
+    window.onload = ()=>{
+      wt();
+    }
+    // wt();
+    function wt() {
+      // document.write("<h1>我愛黎明</h1>"); //建議在DOC製造過程中宣告
+      console.log(123);
+      document.getElementById("username").textContent="LOKI";
+    }
+  </script>
+
+  <h1>hello world</h1>
+  <p id="username">123</p>
+
+
+
+</body>
+
+</html>

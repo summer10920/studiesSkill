@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selector 偽類別</title>
+  <style>
+    a{
+      text-decoration:none;
+    }
+
+    /*如果對a個別設定偽類別，建議順序為lvha*/
+    a:link{
+      color:red;
+    }
+    a:visited{
+      color:green;
+    }
+    a:hover{
+      color:blue;
+    }
+    a:active{
+      color:purple;
+    }
+
+    h1:not(.odd){
+      color:green;
+    }
+
+    body :not(a){
+      font-size: 40px;
+    }
+    table{
+      width: 100%;
+    }
+    tr>.odd{
+      background-color: gray;
+    }
+    tr:nth-of-type(odd){
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr><td>001</td></tr>
+    <tr><td>002</td></tr>
+    <tr><td>003</td></tr>
+    <tr><td>004</td></tr>
+    <tr><td>005</td></tr>
+    <tr><td>006</td></tr>
+  </table>
+
+  <a href="http://www.google.com">Google</a>
+  <a href="http://www.kimo.com">Yahoo</a>
+  <a href="http://www.momo.com">MOMO購物</a>
+  <a href="http://www.mobile01.com">Mobile01</a>
+  <a href="http://www.msn.com">MSN</a>
+  <br>
+
+  <h1 class="odd">Lorem ipsum dolor sit amet.</h1>
+  <h1>Lorem ipsum dolor sit amet.</h1>
+  <h1 class="odd">Lorem ipsum dolor sit amet.</h1>
+  <h1>Lorem ipsum dolor sit amet.</h1>
+  <h1 class="odd">Lorem ipsum dolor sit amet.</h1>
+  <h1>Lorem ipsum dolor sit amet.</h1>
+
+
+
+</body>
+</html>

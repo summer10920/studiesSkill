@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+    a{
+      display: block;
+      width:200px;
+      text-align: center;
+      margin:5px auto;
+      padding:20px 5px;
+      background: darksalmon;
+      text-decoration: none;
+    }
+    .son{
+      background: #ffdbcf;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <!-- <a href="#">全部商品(8)</a>
+    
+<a href="#" id="fa1" class="fa">流行皮件(3)</a>
+      <a href="#" class="fa1 son">男用皮件(3)</a>
+      <a href="#" class="fa1 son">女用皮件(0)</a>
+    
+<a href="#" id="fa2" class="fa">流行鞋區(2)</a>
+      <a href="#" class="fa2 son">少女鞋區(1)</a>
+      <a href="#" class="fa2 son">紳士流行鞋區(1)</a>
+
+<a href="#" id="fa3" class="fa">流行飾品(1)</a>
+      <a href="#" class="fa3 son">時尚手錶(0)</a>
+      <a href="#" class="fa3 son">時尚珠寶(1)</a>
+
+<a href="#" id="fa4" class="fa">背包(2)</a>
+      <a href="#" class="fa4 son">背包(2)</a> -->
+
+  </div>
+  <script>
+    $.getJSON("data.json",result=>todo(result.q4t4))
+
+
+    function todo(jsn){
+      // console.log(jsn);
+      let total=0;
+      for (const fa of jsn) {
+        let faNum=0, print="";
+        for (const son of fa.sub) {
+          // $(".menu").append(`<a href="#" class="fa${fa.id} son">${son.title}(${son.count})</a>`);
+          print+=`<a href="#" class="fa${fa.id} son">${son.title}(${son.count})</a>`;
+          faNum+=son.count;
+          // total+=son.count;
+        }
+        total+=faNum;
+        $(".menu").append(`<a href="#" id="fa${fa.id}" class="fa">${fa.title}(${faNum})</a>${print}`);
+        // $(".menu").append(print);
+      }
+
+      $(".menu").prepend(`<a href="#">全部商品(${total})</a>`);
+
+
+      $(".son").hide();
+      $(".fa").mouseover(function(){
+        node=$(this).attr("id");
+        $(".son").not("."+node).slideUp('fast');
+        $("."+node).slideDown('fast');
+      });
+
+
+    }
+  </script>
+
+</body>
+</html>

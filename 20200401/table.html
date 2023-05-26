@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background: linear-gradient(to right, #25c481, #25b7c4);
+      text-align: center;
+      color:white;
+    }
+    table {
+      border: 1px solid white;
+      text-align: center;
+      text-shadow: 2px 1px 3px #9c9c98;
+      /* box-shadow: inset 1px -2px 6px 7px #444; */
+      box-shadow: 2px 2px 5px 1px #444;
+      width: 100%;
+
+      /* empty-cells: hide; */
+      /* border-spacing: 0px; */
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1px solid white;
+      
+    }
+    tr.odd{
+      background-color: #ccc;
+    }
+    tr:nth-of-type(even) {
+      background: lightblue;
+    }
+    tr:hover{
+      background: lightcoral;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Lorem ipsum dolor sit amet.</h1>
+  <table>
+    <tr class="odd">
+      <td style="width:10%"></td>
+      <td style="width:20%">18號</td>
+      <td style="width:30%">12號</td>
+      <td style="width:40%">6號</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>17號</td>
+      <td>11號</td>
+      <td>5號</td>
+    </tr>
+    <tr class="odd">
+      <td>22號</td>
+      <td>16號</td>
+      <td>10號</td>
+      <td>4號</td>
+    </tr>
+    <tr>
+      <td>21號</td>
+      <td>15號</td>
+      <td>9號</td>
+      <td>3號</td>
+    </tr>
+    <tr class="odd">
+      <td>20號</td>
+      <td>14號</td>
+      <td>8號</td>
+      <td>2號</td>
+    </tr>
+    <tr>
+      <td>19號</td>
+      <td>13號</td>
+      <td>7號</td>
+      <td>1號</td>
+    </tr>
+    <tr class="odd">
+      <td colspan="4">
+        老師的位置
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

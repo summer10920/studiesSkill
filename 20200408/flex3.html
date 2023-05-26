@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      background: lightgray;
+      display: flex;
+
+      height: 500px;
+      width: 270px;
+    }
+
+    .item {
+      width: 100px;
+      margin: 10px;
+    }
+
+    .red {
+      background: lightpink;
+      flex-shrink: 0;
+      order:1;
+    }
+
+    .green {
+      background: lightgreen;
+      flex-shrink:1;
+      order:-2;
+    }
+
+    .blue {
+      background: lightskyblue;
+      flex-shrink: 2;
+      order:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item red"></div>
+    <div class="item green"></div>
+    <div class="item blue"></div>
+  </div>
+</body>
+
+</html>

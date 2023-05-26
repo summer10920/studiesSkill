@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .main {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .myFull {
+      position: fixed;
+      background: rgba(69, 255, 246, 0.4);
+      width: 100vw;
+      height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .myContent {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .myContent .myClose {
+      position: absolute;
+      right: -1rem;
+      top: -1rem;
+      font-size: 2rem;
+
+      border: 3px solid black;
+      border-radius: 50%;
+      line-height: 0;
+      background: #ccc;
+    }
+
+    .myClose:hover {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 每日廣告 -->
+  <div class="myFull">
+    <div class="myContent">
+      <img src="https://www.nintendo.com.hk/switch/animal_crossing_new_horizons/assets/images/top/visual_logo__sp.png"
+        width="600">
+      <!-- <img src="https://picsum.photos/600/200/?random=1"> -->
+      <div class="myClose">
+        <span class="material-icons">close</span>
+      </div>
+    </div>
+  </div>
+  <!-- <img src="https://picsum.photos/600/200/?random=1"> -->
+  <!-- 主題 -->
+  <div class="main">
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/7WrzT4LPkgY?autoplay=1&mute=1"
+      frameborder="0"></iframe>
+  </div>
+
+  <script>
+    function adclose() {
+      // document.getElementsByClassName("myFull")[0].style="display:none";
+      document.getElementsByClassName("myFull")[0].style.display = "none";
+    }
+    function adgoto() {
+      open("https://www.nintendo.tw/index.html?gclid=EAIaIQobChMIzrGM-deH6gIVh3wrCh0AAgSIEAAYASAAEgJHHfD_BwE", "_self");
+    }
+
+    document.getElementsByClassName("myFull")[0].onclick = adclose;
+    document.getElementsByClassName("myContent")[0].getElementsByTagName("img")[0].onclick = adgoto;
+
+
+    /* delete Cookie;
+        let dd=new Date();
+        lifetime=10;
+        dd.setTime(dd.getTime()+lifetime*1000); //add 10 sec save to time's obj
+        document.cookie="loki=888;expires="+dd.toUTCString();
+        // document.cookie="loki=888;expires=Wed, 17 Jun 2020 02:32:22 GMT"; //(時區為0)
+    */
+
+    // findCook("loki");
+
+    function findCook(name) {
+      // let ckary = document.cookie.split("; "); //依條件分割成為一組陣列
+      // let ckget = ckary.find((e)=>{
+      //   return (name + "=" === e.substr(0, name.length + 1));
+      // });
+      let ckget = document.cookie.split("; ").find(e=>name + "=" === e.substr(0, name.length + 1));
+      return (ckget) ? true : false;
+    }
+
+    let ckeat=findCook("adWatch");
+    if(!ckeat){ //新訪客的處理事項
+      let end=new Date();
+      end.setHours(23),end.setMinutes(59),end.setSeconds(59);
+      // console.log(end);
+      document.cookie="adWatch=yes;expires="+end.toUTCString();
+    }
+    else{ // 已看過廣告的訪客，移除該元素
+      // document.getElementsByClassName("myFull")[0].style.display = "none";
+      // adclose();
+      document.getElementsByClassName("myFull")[0].remove(); //移除該元素
+    }
+  </script>
+</body>
+
+</html>

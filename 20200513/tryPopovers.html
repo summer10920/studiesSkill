@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script> -->
+</head>
+
+<body class="p-5">
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+  <br>
+  <div class="progress">
+    <div class="progress-bar" style="width: 25%">25%</div>
+  </div>
+  <br>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
+  </div>
+  <br>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+  </div>
+  <br>
+  <div class="progress">
+    <div class="progress-bar" style="width: 100%"></div>
+  </div>
+
+
+  <hr>
+  <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" data-placement="bottom" title="mY title"
+    data-content="hello world 我是金城武?">Click to toggle popover</button>
+
+
+  <script>
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+    })
+  </script>
+</body>
+
+</html>

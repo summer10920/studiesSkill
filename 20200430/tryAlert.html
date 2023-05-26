@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="p-5">
+  <div id="demo1" class="alert alert-warning alert-dismissible fade show">
+    click me
+    <button type="button" class="close" data-dismiss="alert">
+      close
+    </button>
+    <!--  
+      賦予 data-dismiss="alert" 的對象被點選時，會向上層找class名叫alert之對象進行DOM刪除
+    -->
+  </div>
+  <div id="demo2" class="alert alert-warning fade show">
+    click me
+    <button type="button" class="close" data-dismiss="alert">
+      close
+    </button>
+    <!--  
+      賦予 data-dismiss="alert" 的對象被點選時，會向上層找class名叫alert-dismissible之對象進行DOM刪除
+    -->
+  </div>
+
+  <script>
+    setTimeout(() => {
+      $("#demo1").alert("close");
+    }, 3000);
+
+    $('#demo2').on('closed.bs.alert', function () {
+      console.log("123");
+    })
+  </script>
+
+
+
+
+
+
+
+
+  <hr>
+  <div class="alert alert-danger w-50">提示文字</div>
+  <hr>
+  <div class="alert alert-primary">
+    <h5 class="alert-heading">我是標題</h5>
+    <p>A simple <a href="#" class="alert-link">an example link</a>. primary alert—check it out!</p>
+    <hr>
+    <p>A simple secondary alert—check it out!</p>
+  </div>
+  <div class="alert alert-secondary">
+    A simple secondary alert—check it out!
+  </div>
+  <div class="alert alert-success">
+    A simple success alert—check it out!
+  </div>
+  <div class="alert alert-danger">
+    A simple danger alert—check it out!
+  </div>
+  <div class="alert alert-warning">
+    A simple warning alert—check it out!
+  </div>
+  <div class="alert alert-info">
+    A simple info alert—check it out!
+  </div>
+  <div class="alert alert-light">
+    A simple light alert—check it out!
+  </div>
+  <div class="alert alert-dark">
+    A simple dark alert—check it out!
+  </div>
+</body>
+
+</html>

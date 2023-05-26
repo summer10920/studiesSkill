@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>動畫</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color:white;
+      background: black;
+    }
+    .ani1{
+      width: 100px;
+      height:100px;
+      background: darkred;
+      position: relative;
+
+      /*影格的名稱*/
+      /* animation-name: demo1; */
+      /*動畫持續時間*/
+      /* animation-duration: 1s; */
+      /*速度函式*/
+      /* animation-timing-function: ease-in-out; */
+      /*動畫延遲*/
+      /* animation-delay: 0s; */
+      /*播放次數*/
+      /* animation-iteration-count: infinite; */
+
+      /*循環方式*/
+      /* animation-direction:alternate; */
+      /*停留*/
+      /* animation-fill-mode:forwards; */
+      animation: demo1 ease-in-out 1s infinite alternate;
+    }
+    /* .ani1:hover{
+      animation-name: demo1;
+    } */
+
+    /*demo1's 影格*/
+    @keyframes demo1{
+      from{
+        background: darkred;
+        left:-50px;
+
+      }
+      to{
+        background: darkorange;
+        left:50px;
+      }
+    }
+
+    .ani2{
+      width:100px;
+      height:50px;
+      background: darkorange;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 50px;
+      
+      position: relative;
+      overflow: hidden;
+    }
+    .ani2::after{
+      content: "";
+      background: linear-gradient(
+        135deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 70%
+      );
+
+      position: absolute;
+      width: 100px;
+      height:50px;
+      left: 0;
+      top:0;
+      transform: translateX(-100%);
+      animation: demo2 2s linear infinite;
+    }
+    @keyframes demo2{
+      50%{
+        transform: translateX(0%);
+      }
+      70%{
+        transform: translateX(100%);
+      }
+      100%{
+        transform: translateX(100%);
+      }
+    }
+    .ani3{
+      width: 100px;
+      text-align: center;
+      position: relative;
+
+    }
+    .ani3::before,.ani3::after{
+      content:"";
+      border: 1px solid #fff;
+      position: absolute;
+      left:-100px;
+      right:-100px;
+      top:-0.5rem;
+      bottom: -0.5rem;
+      z-index: -1;
+    }
+    .ani3::after{
+      animation: demo3 5s linear 1 forwards;
+    }
+    @keyframes demo3{
+      0%{
+        right:200px;
+      }
+      25%,75%{
+        background: #500;
+      }
+      50%,100%{
+        background: #f00;
+      }
+    }
+    .ani4{
+      font-size: 5rem;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+      border: 1px solid #fff;
+      padding: 10px 0 10px 1rem;
+      animation: demo4_text 5s linear infinite, demo4_box 10s linear infinite;
+    }
+    @keyframes demo4_text{
+      0%,100%{
+        text-shadow: 0 0px 3rem #ff0000ff,0 0px 3rem #ff0000FF;
+      }
+      33%{
+        text-shadow: 0 0px 3rem #00ff00ff,0 0px 3rem #00ff00FF;
+      }
+      66%{
+        text-shadow: 0 0px 3rem #0000ffff,0 0px 3rem #0000ffFF;
+      }
+    }
+    @keyframes demo4_box {
+      0%{
+        box-shadow: 0px 0px 1rem 5px #f00, 0px 0px 1rem 15px #ff000000, inset 0px 0px 1rem 5px #f00;
+      }
+      12.5%{ 
+        /* orange */
+        box-shadow: 0px 0px 1rem 5px #f80, 0px 0px 1rem 15px #ff880077, inset 0px 0px 1rem 5px #f80;
+      }
+      25%{
+        /* yellow */
+        box-shadow: 0px 0px 1rem 5px #ff0, 0px 0px 1rem 15px #ffff0000, inset 0px 0px 1rem 5px #ff0;
+      }
+      37.5%{
+        /* green */
+        box-shadow: 0px 0px 1rem 5px #0f0, 0px 0px 1rem 15px #00ff0077, inset 0px 0px 1rem 5px #0f0;
+      }
+      50%{
+        /* cyan */
+        box-shadow: 0px 0px 1rem 5px #0f8, 0px 0px 1rem 15px #00ff8800, inset 0px 0px 1rem 5px #0f8;
+      }
+      62.5%{
+        /*blue*/
+        box-shadow: 0px 0px 1rem 5px #0ff, 0px 0px 1rem 15px #00ffff77, inset 0px 0px 1rem 5px #0ff;
+      }
+      75%{
+        /*skyblue*/
+        box-shadow: 0px 0px 1rem 5px #00f, 0px 0px 1rem 15px #0000ff00, inset 0px 0px 1rem 5px #00f;
+      }
+      87.5%{
+        /* purple */
+        box-shadow: 0px 0px 1rem 5px #f0f, 0px 0px 1rem 15px #ff00ff77, inset 0px 0px 1rem 5px #f0f;
+      }
+      100%{
+        box-shadow: 0px 0px 1rem 5px #f00, 0px 0px 1rem 15px #ff000000, inset 0px 0px 1rem 5px #f00;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ani1">HELLO WORLD</div>
+  <div class="ani2">Button</div>
+  <div class="ani3">Loading</div>
+  <div class="ani4">Loki</div>
+</body>
+</html>

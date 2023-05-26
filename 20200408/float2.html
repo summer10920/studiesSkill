@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      margin:0;
+    }
+    .container{
+      width:960px;
+      background:lightcoral;
+      margin:0 auto;
+      /* overflow: hidden; */
+    }
+    .col{
+      box-sizing: border-box;
+      width:300px;
+      border: 1px solid lightgreen;
+      padding: 50px;
+      margin: 10px;
+      float: left;
+      /* display: inline-block; */
+    }
+    .clrbox{
+      width: 960px;
+      background: yellowgreen;
+      height: 50px;
+      margin: 0 auto;
+    }
+    .clearfloat::before,.clear::after{
+      content:"";
+      display: block;
+      clear:both;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- div.container>div.col*3 -->
+  <div class="container clearfloat">
+    <div class="col">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat dicta est rerum quo culpa porro
+      possimus ratione ex vero aliquid! Id consequatur harum asperiores repudiandae? Impedit adipisci eos illum enim
+      nihil odit autem tenetur totam inventore animi iste neque mollitia delectus porro explicabo facere, corrupti
+      cupiditate vero asperiores, aut doloribus?</div>
+    <div class="col">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat dicta est rerum quo culpa porro
+      possimus ratione ex vero aliquid! Id consequatur harum asperiores repudiandae? Impedit adipisci eos illum enim
+      nihil odit autem tenetur totam inventore animi iste neque mollitia delectus porro explicabo facere, corrupti
+      cupiditate vero asperiores, aut doloribus?</div>
+    
+    <div class="clearfloat">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat dicta est rerum quo culpa porro
+      possimus ratione ex vero aliquid! Id consequatur harum asperiores repudiandae? Impedit adipisci eos illum enim
+      nihil odit autem tenetur totam inventore animi iste neque mollitia delectus porro explicabo facere, corrupti
+      cupiditate vero asperiores, aut doloribus?</div>
+  </div>
+  <div class="clrbox"></div>
+</body>
+
+</html>

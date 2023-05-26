@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="slick/slick.css">
+  <link rel="stylesheet" href="slick/slick-theme.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="slick/slick.min.js"></script>
+  <style>
+    body {
+      background: #333;
+      color: #fff;
+      margin: 0;
+    }
+
+    #main {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .control img {
+      width: 90px;
+      padding: 0 5px;
+      cursor: pointer;
+    }
+
+    .control {
+      width: 400px;
+      margin: 10px 30px;
+    }
+
+    #box {
+      flex: 0 0 420px;
+      overflow: hidden;
+    }
+
+    #ani_zone{
+      transform: scale(1);
+      transition: transform 0.5s;
+      position: relative;
+    }
+
+    #ani_zone.scale{
+      transform: scale(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- div#main>h1{預告片介紹}+div#box>div#ani_zone>img+p{片名}^^div.control -->
+  <div id="main">
+    <h1>預告片介紹</h1>
+    <div id="box">
+      <div id="ani_zone">
+        <img>
+        <p></p>
+      </div>
+    </div>
+    <div class="control"></div>
+  </div>
+  <script>
+    let effect = 0, myimg = new Object(),pause=null; //setting 全域變數
+
+    $.getJSON("data.json", function (result) {
+      effect = result.q3t4.effect; //number
+      myimg = result.q3t4.img; //object
+      //DOM Write
+
+      for (const key in myimg)
+        $(".control").append(
+          `<div><img src="${myimg[key]}" alt="${key}" class="min-img"></div>`
+        );
+
+      //初始化主圖文
+      $("#ani_zone").find("img").attr("src", myimg[Object.keys(myimg)[0]]);
+      $("#ani_zone").find("p").text(Object.keys(myimg)[0]);
+
+      //slick 優化
+      $('.control').slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        dots: true
+      });
+
+      //click event
+      $(".min-img").click(function () {
+        let key = $(this).attr("alt"); //key 周星馳
+        swap(key);
+        clearInterval(pause);
+        autoplay(key);
+      });
+
+      //初始自動播放
+      autoplay(Object.keys(myimg)[0]);
+
+    });
+
+    //主圖文替換，who為new display
+    function swap(who) {
+      switch (effect) {
+        case 1: //fadeInOut
+          $("#ani_zone").fadeToggle(function () {
+            $(this).find("img").attr("src", myimg[who]);
+            $(this).find("p").text(who);
+            $(this).fadeToggle();
+          });
+          break;
+        case 2: //slide not answer
+          $("#ani_zone").slideToggle(function () {
+            $(this).find("img").attr("src", myimg[who]);
+            $(this).find("p").text(who);
+            $(this).slideToggle();
+          });
+          break;
+        case 3: //scale
+          $("#ani_zone").toggleClass("scale");
+          setTimeout(()=>{ //delay 0.5s todo this
+            $("#ani_zone").find("img").attr("src", myimg[who]);
+            $("#ani_zone").find("p").text(who);
+            $("#ani_zone").toggleClass("scale"); // show scale(1)
+          },500);
+          break;
+        case 4: //move left & jump right & move center
+        $("#ani_zone").animate({
+            left: "-150%"
+          }, function () {
+            $(this).find("img").attr("src", myimg[who]);
+            $(this).find("p").text(who);
+            $(this).css("left","150%").animate({
+              left:"0"
+            })
+          });
+          break;
+      }
+    }
+
+    //autoplay  提供begin(片名)，查詢該位置處(數字)，我們透過+1尋找下一個new資料
+    function autoplay(begin){
+      //將片名 轉換成 第幾張(array)圖之數字
+      let nowNum=Object.keys(myimg).indexOf(begin);  // is num 代表在資料內的第N筆
+      pause=setInterval(() => {
+        // nowNum++; // N cycle ++
+        nowNum=(nowNum+1)%Object.keys(myimg).length;   // 012345012345....
+        swap(Object.keys(myimg)[nowNum]);
+      }, 2000);
+
+    }
+
+  </script>
+</body>
+
+</html>

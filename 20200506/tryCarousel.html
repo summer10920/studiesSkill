@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/fa483230ea.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!--
+div.carousel.side[data-pause={value}]
+value=hover(default), false（不暫停）
+  -->
+  <!-- 輪播元件 -->
+  <div id="lokislider" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false" data-interval="500">
+    <!-- 輪播區 -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>First slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+        <img src="https://picsum.photos/1920/600/?random=1" class="d-block w-100">
+      </div>
+      <div class="carousel-item">
+        <img src="https://picsum.photos/1920/600/?random=2" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Second slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://picsum.photos/1920/600/?random=3" class="d-block w-100">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Third slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 導覽鍵 -->
+    <a class="carousel-control-prev" href="#lokislider" data-slide="prev" style="font-size: 30px;">
+      <span class="material-icons" style="font-size: 3rem;">sentiment_satisfied</span>
+    </a>
+    <a class="carousel-control-next" href="#lokislider" data-slide="next" style="font-size: 30px;">
+      <i class="fas fa-chevron-circle-right fa-3x"></i>
+    </a>
+
+    <!-- 導覽列 -->
+    <ol class="carousel-indicators">
+      <li data-target="#lokislider" data-slide-to="0" class="active"></li>
+      <li data-target="#lokislider" data-slide-to="1"></li>
+      <li data-target="#lokislider" data-slide-to="2"></li>
+    </ol>
+  </div>
+
+</body>
+
+</html>

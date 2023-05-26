@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>陣列與物件!!</title>
+</head>
+
+<body>
+  <h1>陣列與物件!!</h1>
+  <script>
+    let ary = [];
+    for (let i = 0; i < 11; i++) {
+      ary.push("a" + i);
+    }
+
+    // foreach
+    /*
+      function showary(s1,s2){
+        console.log(s1,s2);
+      }
+      ary.forEach(showary);
+    */
+    /*
+      ary.forEach(function (s1, s2) {
+        console.log(s1, s2);
+      });
+    */
+
+    //ES6 箭頭(速用)函式，作用類似匿名函式
+    ary.forEach((s1, s2) => {
+      console.log(s1, s2);
+    });
+
+    // function(s1) {... }
+    // (s1) => {... }
+
+    // function(this) {... }
+    // X (this) => {... }
+    console.log("--------------------");
+
+    //for-of 遍歷 value 沒有 key 適合 array
+    for (let i of ary) {
+      console.log(i);
+    }
+    console.log("--------------------");
+
+    //filter 過濾，它可以幫你對一個陣列A進行條件return，最後集結成一個新陣列
+
+    ary[50] = 100;
+
+
+    //QA: 請幫忙將陣列的無效陣列格子移除
+
+    // function clearNull(val){
+    //   // if(val!=null) return val;
+    //   return (val!=null);
+    // }
+
+    // b=ary.filter((clearNull));
+    // b=[a0,a1,a2,...];
+
+    ary = ary.filter((val) => { return val != null });
+
+    //DATA陣列適合拿來做資料整理，DAT物件適合做暫存取存
+
+    let obj = {
+      "cat": "加菲貓",
+      dog: "史努比",
+      other: {
+        house: "彩虹小馬",
+        mouse: "米老鼠"
+      }
+    }; // JSON格式 
+
+    // console.log(obj.other.house);
+
+    //for-in 遍歷 key ，適合obj使用
+    for (const key in obj) {
+      console.log(key,obj[key]);
+    }
+
+    // //原生鍊
+    // for(i=0;i<....)
+    // for( of ) val
+    // for( in ) key
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

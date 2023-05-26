@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Hello world!!</h1>
+
+  <script>
+    // if (condition) {
+    //   //codeA
+    // }
+    // else {
+    //   //codeB
+    // }
+
+    // if (condition) {
+    //   //codeA
+    // } else {
+    //   //codeB
+    // }
+
+
+    // if (true) {
+    //   //codeA
+    // }
+    // else if (true) {
+    //   //codeB
+    // }
+    // else {
+    //   //codeC
+    // }
+
+    // a = 50;
+    // if (a > 60) a = 100;
+    // else a = 0;
+
+    let man = false;
+    if (man) {
+      console.log("挖你好帥");
+    }
+    else {
+      console.log("東踏取蜜");
+    }
+
+    let height = 158; //高
+    let money = 50; //富
+    let face = 0; //1帥0醜
+
+    if (height > 170 && money > 80 && face) console.log("100分");
+    else if (height > 170 || money > 80 || face) console.log("60~99分");
+    else console.log("0~59分")
+
+    let day = 4;
+    // let msg=day<6?"Workday":"Holiday";
+    // console.log(`Today is ${msg}`);
+    console.log(`Today is ${day < 6 ? "Workday" : "Holiday"}`);
+
+
+    let lang = "jp";
+    switch (lang) {
+      case "tw":
+        console.log("我喜歡你");
+        break;
+      case "jp":
+        console.log("愛してる");
+        break;
+      case "hk":
+        console.log("我好鍾意你啊");
+        break;
+      case "us":
+        console.log("i love u");
+      default:
+        console.log("...");
+        break;
+    }
+
+    if (lang == "tw") console.log("我喜歡你");
+    else if (lang == "jp") console.log("愛してる");
+    else if (lang == "hk") console.log("我好鍾意你啊");
+    else if (lang == "us") console.log("i love u");
+    else console.log("...");
+
+    str = "";
+    for (let i = 0; i < 10; i++) str += i;
+    console.log(str);
+
+    // console.log(1);
+    // console.log(4);
+    // console.log(7);
+    // console.log(10);
+
+    for (let i = 1; i < 11; i += 3) console.log(i);
+
+    // console.log("2*1=1");
+    // console.log("2*2=2");
+    // console.log("2*3=4");
+    // console.log("2*4=8");
+    // console.log("...");
+    // console.log("3*1=3");
+    // console.log("...");
+    // console.log("9*9=81");
+
+    // for(let i=2;i<10;i++)
+    //   for(let j=1;j<10;j++)
+    //     console.log(`${i}*${j}=${i*j}`);
+
+    // for (let i = 2, j = 1; i < 10; j++) {
+    //   console.log(`${i}*${j}=${i * j}`);
+    //   if (j == 9) {
+    //     j = 0;
+    //     i++;
+    //   }
+    // }
+
+    let i = 2, j = 1;
+    while (i < 10) {
+      console.log(`${i}*${j}=${i * j}`);
+      if (j == 9) {
+        j = 0;
+        i++;
+      }
+      j++;
+    }
+
+    let msg = "", k = 0;
+    do {
+      k++;
+      msg += k;
+    } while (k < 5);
+    console.log(msg);
+
+    var m=0;
+    while(m<10){
+      m++;
+      if(m==5) continue;
+      if(m==8) break;
+      console.log(m);
+    }
+
+
+    function parrot(say){
+      console.log("阿~~~");
+      if(say=="mute") return;
+      console.log(say);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>

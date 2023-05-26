@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <!--正中央-->
+  <script>
+    $.getJSON("data.json", function (result) {
+      todo(result.q1t5); //等json拿到了才會執行todo函式
+    });
+    function todo(myjson) {
+      var lin = myjson; //img資料
+      
+      if (lin.length) { //有資料我們才要替換HTML，先拿一筆出來看看
+        $("#mwww").html("<embed loop=true src='" + lin[0] + "' style='width:99%; height:100%;'></embed>"); //先跑一次第0張
+        if (lin.length > 1) { //兩筆以上就來輪播吧   0[1]23
+          let now = 1; //3秒後從1號開始
+          setInterval(() => {
+            $("#mwww").html("<embed loop=true src='" + lin[now] + "' style='width:99%; height:100%;'></embed>");
+            now = (now + 1) % lin.length;
+            // (0,1,2,3)  next => (1,2,3,4)%4 => (1,2,3,0)
+          }, 3000);
+        }
+      }
+    }
+  </script>
+  <div style="width:100%; padding:2px; height:290px;">
+    <div id="mwww" loop="true" style="width:100%; height:100%;">沒有資料</div>
+  </div>
+</body>
+
+</html>

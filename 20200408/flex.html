@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      /*父容器 flex's box */
+      background: lightgray;
+      height: 800px;
+      display: flex;
+
+      /*default value*/
+      justify-content: flex-start; /*控制主軸的排列方式, ex:flex-start,flex-end,center,space-between,space-around*/
+      align-items: stretch; /*控制叉軸的排列方式，預設為全滿, ex:stretch,flex-start,flex-end,center,baseline*/
+      /* flex-flow: flex-direction flex-wrap; */
+      flex-flow: row wrap;
+      /* flex-direction: row; ex:row,column,row-reverse,column-reverse */
+      /*主軸的方向性為水平或垂直*/
+      /* flex-wrap: wrap; ex:nowrap,wrap*/
+      /*item的排列是否換行*/
+
+      /* align-content 只有在warp模式下才有意義，參數值同justify-content行為 */ 
+      align-content: space-around;
+    }
+
+    /*子項目 flex's item */
+    .red {
+      background: lightpink;
+      height:100px;
+      align-self: center; /*獨立對子項目操作，參數值同align-items行為*/
+    }
+    .green {
+      background: lightgreen;
+      height:200px;
+    }
+
+    .blue {
+      background: lightskyblue;
+    }
+    .container>div{
+      width:100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item red">R Lorem ipsum dolor sit amet.</div>
+    <div class="item green">G Lorem ipsum dolor sit amet.</div>
+    <div class="item blue">B Lorem ipsum dolor sit amet.</div>
+    <div class="item red">R Lorem ipsum dolor sit amet.</div>
+    <div class="item green">G Lorem ipsum dolor sit amet.</div>
+    <div class="item blue">B Lorem ipsum dolor sit amet.</div>
+    <div class="item red">R Lorem ipsum dolor sit amet.</div>
+    <div class="item green">G Lorem ipsum dolor sit amet.</div>
+    <div class="item blue">B Lorem ipsum dolor sit amet.</div>
+    <div class="item red">R Lorem ipsum dolor sit amet.</div>
+    <div class="item green">G Lorem ipsum dolor sit amet.</div>
+    <div class="item blue">B Lorem ipsum dolor sit amet.</div>
+  </div>
+</body>
+
+</html>

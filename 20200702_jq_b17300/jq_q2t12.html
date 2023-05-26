@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <table border="1" width="100%" cellpadding="5">
+    <tr>
+      <td width="40%">標題</td>
+      <td width="60%">內容</td>
+    </tr>
+  </table>
+  <div id="alt" style="
+    position: absolute; 
+    width:40vw;
+    min-height: 100px; 
+    word-break:break-all; 
+    text-align:justify; 
+    background-color: rgb(255, 255, 204); 
+    z-index: 99; 
+    display: none; 
+    padding: 5px; 
+    border: 3px double rgb(255, 153, 0); 
+    background-position: initial initial; 
+    background-repeat: initial initial;
+  ">
+  123
+  </div>
+  <script>
+    $.getJSON("data.json", function (re) {
+      todo(re.q2t11);
+    });
+
+    function todo(myjsn) {
+      //DOM 寫入
+      for (const key in myjsn) {
+        $("table").append(`
+        <tr>
+          <td>${key}</td>
+          <td class="sswww">  <!-- Object this form here -->
+            <span style="pointer-events: none;padding:5px">${myjsn[key].substr(0, 20)}...</span>
+            <span class="all" style="display:none">${myjsn[key]}</span>
+          </td>
+        </tr>
+        `);
+      }
+
+      // event toggle
+      $(".sswww").hover(function(){
+        $("#alt").html(
+          $(this).children(".all").html()
+        ).css({
+          "top":$(this).offset().top+30,
+          "left":$(this).offset().left+20
+        }).show();
+      });
+      $(".sswww").mouseout(()=>{
+        $("#alt").hide();
+      });
+    }
+  </script>
+</body>
+
+</html>

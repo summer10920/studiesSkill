@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="button" id="ock" value="try me">
+
+  <script>
+    // 監聽事件指定
+    let btn=document.getElementById("ock");
+
+    btn.addEventListener("click",function(){
+      alert("it's click by listenr");
+    });
+    btn.addEventListener("mouseover",todo);
+    btn.addEventListener("mouseover",tosay);
+
+    function todo(){
+      alert("it's hover in by listenr");
+    }
+    function tosay(){
+      alert("you can do more function");
+      
+    }
+
+    //10秒後將拿掉todo的點擊事件
+    setTimeout(clearLis, 10000);
+
+    function clearLis(){
+      btn.removeEventListener("mouseover",todo);
+      console.log("removed");
+    }
+
+
+  </script>
+</body>
+
+</html>

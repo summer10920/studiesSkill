@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <div style="width:100%; height:480px;text-align: center;" class="dbor">
+    <span class="t botli">校園映象區</span>
+    <div style="display:flex; flex-direction: column; align-items: center;">
+      <img src="img/01E01.jpg" onclick="pp(1)">
+      <div id="list" style="display:flex;flex-direction: column;">
+        <!-- 
+          <img class="im" id="ssaa0" src="img/01D01.jpg" width="150" height="103">
+          <img class="im" id="ssaa1" src="img/01D02.jpg" width="150" height="103">
+          <img class="im" id="ssaa2" src="img/01D03.jpg" width="150" height="103">
+          <img class="im" id="ssaa3" src="img/01D04.jpg" width="150" height="103">
+          <img class="im" id="ssaa4" src="img/01D05.jpg" width="150" height="103">
+          <img class="im" id="ssaa5" src="img/01D06.jpg" width="150" height="103">
+        -->
+      </div>
+      <img src="img/01E02.jpg" onclick="pp(2)">
+    </div>
+    <script>
+      let nowpage=0,num=0;
+
+      $.getJSON("data.json", function (result) {
+        todo(result.q1t6); //等json拿到了才會執行todo函式
+      });
+
+      function todo(myjson) {
+        //建構新元素
+        for (let i = 0; i < myjson.length; i++) {
+          $("#list").append(`<img class="im" id="ssaa${i}" src="${myjson[i]}" width="150" height="103">`);
+        }
+        //全隱藏
+        $(".im").hide();
+        //初始下show前三張
+        $("#ssaa0,#ssaa1,#ssaa2").show();
+
+        //回存全域變數
+        num=myjson.length;
+      }
+
+      function pp(x){
+        if(x==1&&nowpage>0){ //讓圖片上跑的效果
+          nowpage--;
+          $(`#ssaa${nowpage}`).slideToggle();
+          $(`#ssaa${nowpage+3}`).slideToggle();
+        }
+        if(x==2&&nowpage<num-3){ //讓圖片下跑的效果
+          $(`#ssaa${nowpage}`).slideToggle();
+          $(`#ssaa${nowpage+3}`).slideToggle();
+          nowpage++;
+        }
+      }
+
+      // var nowpage = 0, num = 0;
+      // function pp(x) {
+      //   var s, t;
+      //   if (x == 1 && nowpage - 1 >= 0) { nowpage--; }
+      //   if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) { nowpage++; }
+      //   $(".im").hide()
+      //   for (s = 0; s <= 2; s++) {
+      //     t = s * 1 + nowpage * 1;
+      //     $("#ssaa" + t).show()
+      //   }
+      // }
+      // pp(1)
+    </script>
+  </div>
+</body>
+
+</html>

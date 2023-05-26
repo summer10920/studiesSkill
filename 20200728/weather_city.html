@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+</head>
+
+<body>
+  <h1>台灣北部地區一周白天溫度</h1>
+  <div style="width:80vw">
+    <canvas id="myChart" width="3" height="2"></canvas>
+  </div>
+
+  <script>
+    let tp;
+    let nt;
+    let kl;
+    let tu;
+    $.getJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-D0047-091?Authorization=CWB-77F7EF76-6578-458C-ACDF-72ABF4BE7727&downloadType=WEB&format=JSON")
+      .done(e => {
+        tp = e.cwbopendata.dataset.locations.location[16];
+        nt = e.cwbopendata.dataset.locations.location[18];
+        kl = e.cwbopendata.dataset.locations.location[13];
+        tu = e.cwbopendata.dataset.locations.location[21];
+        // console.log(tp, nt, kl, tu);
+
+        let
+          p = new Array(),
+          n = new Array(),
+          k = new Array(),
+          u = new Array(),
+          timeline = new Array();
+
+        for (let i = 0; i < tp.weatherElement[0].time.length; i += 2) {
+
+          //將溫度逐項塞入city陣列
+          p.push(tp.weatherElement[0].time[i].elementValue.value);
+          n.push(nt.weatherElement[0].time[i].elementValue.value);
+          k.push(kl.weatherElement[0].time[i].elementValue.value);
+          u.push(tu.weatherElement[0].time[i].elementValue.value);
+
+          //將時間文字塞入timeline
+          // tp.weatherElement[0].time[0].startTime;
+          timeline.push(tp.weatherElement[0].time[i].startTime.substr(0, 10));
+        }
+        // console.log(timeline);
+        // console.log(p, n, k, u);
+        // p_min=Math.min.apply(null,p); //20
+        // n_min=Math.min.apply(null,n); //22
+        // k_min=Math.min.apply(null,k); //25
+        // u_min=Math.min.apply(null,u); //26
+        let findMin=Math.min.apply(null,[Math.min.apply(null,p),Math.min.apply(null,n),Math.min.apply(null,k),Math.min.apply(null,u)]);
+        let findMax=Math.max.apply(null,[Math.max.apply(null,p),Math.max.apply(null,n),Math.max.apply(null,k),Math.max.apply(null,u)]);
+
+
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: timeline,
+            datasets: [{
+              label: nt.locationName,
+              data: n,
+              backgroundColor: 'rgba(255, 99, 132, 0.2)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+            }, {
+              label: tp.locationName,
+              data: p,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+            }, {
+              label: kl.locationName,
+              data: k,
+              backgroundColor: 'rgba(255, 206, 86, 0.2)',
+              borderColor: 'rgba(255, 206, 86, 1)',
+            }, {
+              label: tu.locationName,
+              data: u,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  // beginAtZero: true,
+                  stepSize: 0.5,
+                  min: findMin-1,
+                  max: findMax+1
+                }
+              }]
+            }
+          }
+        });
+      })
+      .fail(e => {
+        console.log("it's fail so said!!");
+      });
+
+
+  </script>
+</body>
+
+</html>

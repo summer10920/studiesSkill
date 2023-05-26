@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>BOM DEMO PAGE</h1>
+  <script>
+      // alert("你J個網頁小偷!!");
+
+      // let bln=confirm("你今天過的好嗎?");
+      // console.log(bln,typeof(bln));
+      // let msg=(bln)?"真是美好的一天呢":"別灰心明天會更好";
+      // alert(msg);
+      // alert((bln)?"真是美好的一天呢":"別灰心明天會更好");
+
+      // let ans = prompt("你等等怎麼回家?","Default Text");
+
+      // if(ans){ //if(null) is false
+        // alert("那你等等" + ans + "回家小心點唷 :D");
+      // }
+      // else{
+        // alert("你回家最好我小心一點！！")
+      // }
+      
+      /*
+      homework
+      建立空白網頁，使用 ifelse, alert, confirm, prompt，設計一個是非題之闖 5 關遊戲。每題都有提示要不要做，猜對繼續闖關，猜錯直接結束遊戲。
+      */
+
+      // var sec=3*1000;
+      // function fn(){
+      //   console.log(123);
+      // }
+      // var stop=setTimeout(fn,sec);
+
+        var stop=setTimeout(function(){
+          console.log(456);
+        },3000);
+      // clearTimeout(stop);
+
+
+      
+      let i=0; //作為公用的變數，才能每次進行變化
+      function reply() {
+        console.log(i);
+        i++;
+        if(i==5) clearInterval(timestop);
+      }
+      let timestop=setInterval(reply, 1000);
+      
+  </script>
+</body>
+
+</html>

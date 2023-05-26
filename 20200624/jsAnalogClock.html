@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ccc;
+      display: flex;
+      /* flex-flow: row wrap; */
+      flex-wrap: wrap;
+      justify-content: space-around;
+      height: 100vh;
+      align-items: center;
+    }
+
+    .circle {
+      /*圓盤*/
+      width: 300px;
+      height: 300px;
+      background: white;
+      border-radius: 50%;
+      margin: 20px;
+      position: relative;
+    }
+
+    h3 {
+      text-align: center;
+      /* margin-top:20%; */
+      position: relative;
+      top: 10%;
+    }
+
+    .jhur1 {
+      width: 10px;
+      height: 25%;
+      background: #00f;
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      margin-left: -5px;
+    }
+
+    .jmin1 {
+      width: 10px;
+      height: 40%;
+      background: #0f0;
+      position: absolute;
+      left: 50%;
+      top: 15%;
+      margin-left: -5px;
+    }
+
+    .jsec1 {
+      width: 4px;
+      height: 50%;
+      background: #f00;
+      position: absolute;
+      left: 50%;
+      top: 5%;
+      margin-left: -2px;
+
+    }
+
+    .zmin1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      animation: j_min calc(60s*60) infinite linear;
+      /* transform: rotate(354deg); */
+    }
+
+    .zhur1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      animation: j_hur calc(12s*60*60) infinite linear;
+      /* transform: rotate(359.5deg); */
+    }
+
+    .zsec1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      animation: j_sec calc(6s*10) infinite linear;
+      /* transform: rotate(354deg); */
+    }
+
+    .jmin2 {
+      width: 20px;
+      height: 300px;
+      background: url("mm.png");
+      position: absolute;
+      left: 50%;
+      margin-left: -10px;
+      animation: j_min calc(60s*60) infinite linear;
+    }
+
+    .jhur2 {
+      width: 20px;
+      height: 300px;
+      background: url("hh.png");
+      position: absolute;
+      left: 50%;
+      margin-left: -10px;
+      animation: j_hur calc(12s*60*60) infinite linear;
+    }
+
+    .jsec2 {
+      width: 20px;
+      height: 300px;
+      background: url("ss.png");
+      position: absolute;
+      left: 50%;
+      margin-left: -10px;
+      animation: j_sec calc(6s*10) infinite linear;
+    }
+
+    .rmin3 {
+      animation: j_min calc(60s*60) infinite linear;
+      /* animation: j_sec 3s infinite linear; */
+      transform-origin: 50% 87.5%;
+    }
+
+    .rhur3 {
+      animation: j_hur calc(12s*60*60) infinite linear;
+      /* animation: j_sec 3s infinite linear; */
+      transform-origin: 50% 80%;
+    }
+
+    .rsec3 {
+      animation: j_sec calc(6s*10) infinite linear;
+      /* animation: j_sec 3s infinite linear; */
+      transform-origin: 50% 90%;
+      /*left top*/
+    }
+
+    .rmin4 {
+      transform-origin: 50% 87.5%;
+    }
+
+    .rhur4 {
+      transform-origin: 50% 80%;
+    }
+
+    .rsec4 {
+      transform-origin: 50% 90%;
+      /*left top*/
+    }
+
+    #svgzone{
+      animation: j_sec calc(6s*10) infinite linear;
+    }
+  </style>
+  <script>
+    /*
+    如果假設是23:59:59，如何轉換出H,M,S之角度
+    
+    S:59  ->  360度/60秒    =  6deg/sec  => 59*6=354 (low spec)
+    M:59  ->  360度/60分    =  6deg/min  => 59*6=354 (low spec)
+          ->  360度/3600秒  =  0.1deg/sec  => 59:59 (分秒) = (59*60+59=3599)sec => 3599*0.1 = 359.9 (high spec)
+    
+    H:23  ->  360度/12時    = 30deg/hour => 23*30=360+330 (low spec, bad think)
+          ->  360度/12*60分 = 0.5deg/min => 23:59 (時分) = (23*60+59=1439)min => 719.5 = 360+359.5 (medium sepc)
+          ->  360度/43200秒 = 0.00833/sec => 23:59:59(時分秒) = (23*60*60+59*60+59=86399) = 360+359.70367 (high sepc)
+    */
+    let time = new Date();
+    let pos_s = time.getSeconds();
+    let pos_m = time.getMinutes();
+    let pos_h = time.getHours();
+    let x = pos_s * 6;/* low deg*/
+    let y = (pos_m * 60 + pos_s) * 0.1; /*high deg*/
+    let z = (pos_h * 60 + pos_m) * 0.5; /*medium deg*/
+
+    document.write(`
+      <style>
+        @keyframes j_min {
+          from {
+            transform: rotate(${y}deg);
+          }
+          to {
+            transform: rotate(${y + 360}deg);
+          }
+        }
+        @keyframes j_hur {
+          from {
+            transform: rotate(${z}deg);
+          }
+          to {
+            transform: rotate(${z + 360}deg);
+            /*270+360*/
+          }
+        }
+        @keyframes j_sec {
+          from {
+            transform: rotate(${x}deg);
+          }
+
+          to {
+            transform: rotate(${x + 360}deg);
+            /*180+360*/
+          }
+        }
+      </style>
+    `);
+
+    window.onload = () => { /* 指定當window載入後才執行某段代碼 */
+
+      /*初始角度*/
+      document.getElementsByClassName("rmin4")[0].style.transform = "rotate(" + y + "deg)";
+      document.getElementsByClassName("rhur4")[0].style.transform = "rotate(" + z + "deg)";
+      document.getElementsByClassName("rsec4")[0].style.transform = "rotate(" + x + "deg)";
+
+      /*每秒進行DOM複寫填入時間角度*/
+
+      setInterval(() => {
+        let time = new Date();
+        let pos_s = time.getSeconds();
+        let pos_m = time.getMinutes();
+        let pos_h = time.getHours();
+        let x = pos_s * 6;/* low deg*/
+        let y = (pos_m * 60 + pos_s) * 0.1; /*high deg*/
+        let z = (pos_h * 60 + pos_m) * 0.5; /*medium deg*/
+        document.getElementsByClassName("rmin4")[0].style.transform = "rotate(" + y + "deg)";
+        document.getElementsByClassName("rhur4")[0].style.transform = "rotate(" + z + "deg)";
+        document.getElementsByClassName("rsec4")[0].style.transform = "rotate(" + x + "deg)";
+      }, 1000);
+
+
+
+
+    }
+  </script>
+</head>
+
+<body>
+  <div class="circle">
+    <div class="zmin1">
+      <div class="jmin1"></div>
+    </div>
+    <div class="zhur1">
+      <div class="jhur1"></div>
+    </div>
+    <div class="zsec1">
+      <div class="jsec1"></div>
+    </div>
+    <h3>雙DIV+CSS Animation</h3>
+  </div>
+  <div class="circle">
+    <!-- div.jmin2+div.jhur2+div.jsec2 -->
+    <div class="jmin2"></div>
+    <div class="jhur2"></div>
+    <div class="jsec2"></div>
+    <h3>PNG+CSS Animation</h3>
+  </div>
+  <div class="circle">
+    <div class="jmin1 rmin3"></div>
+    <div class="jhur1 rhur3"></div>
+    <div class="jsec1 rsec3"></div>
+    <h3>CSS's Offset & Animation</h3>
+  </div>
+  <div class="circle">
+    <div class="jmin1 rmin4"></div>
+    <div class="jhur1 rhur4"></div>
+    <div class="jsec1 rsec4"></div>
+    <h3>CSS's Offset + JS Interval</h3>
+  </div>
+  <script>
+    // document.getElementsByClassName("rmin4")[0].style="transform:rotate(90deg)";
+    // document.getElementsByClassName("rhur4")[0].style="transform:rotate(180deg)";
+    // document.getElementsByClassName("rsec4")[0].style="transform:rotate(270deg)";
+  </script>
+  <svg version="1.1" id="svgzone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+    y="0px" width="400px" height="400px" viewBox="0 0 400 400" enable-background="new 0 0 400 400"
+    xml:space="preserve">
+    <rect id="squre" x="0" y="0" fill="#E61673" stroke="#FFFFFF" stroke-miterlimit="10" width="183" height="183" />
+    <linearGradient id="star_1_" gradientUnits="userSpaceOnUse" x1="476.7949" y1="122.8813" x2="632.7958" y2="259.8821">
+      <stop offset="0" style="stop-color:#FFF21F" />
+      <stop offset="0.0112" style="stop-color:#FFEF1C" />
+      <stop offset="0.0974" style="stop-color:#FDDC0D" />
+      <stop offset="0.1863" style="stop-color:#FCD103" />
+      <stop offset="0.2809" style="stop-color:#FCCD00" />
+      <stop offset="0.6685" style="stop-color:#F1942E" />
+      <stop offset="0.8876" style="stop-color:#EA652D" />
+      <stop offset="1" style="stop-color:#E5352B" />
+    </linearGradient>
+    <polygon id="star" fill="url(#star_1_)" stroke="#FFFFFF" stroke-miterlimit="10" points="610.945,258.737 553.81,229.914 
+ 497.675,260.64 507.432,197.394 460.862,153.501 524.027,143.237 551.381,85.383 580.662,142.285 644.138,150.422 599.068,195.854 
+ " />
+    <g id="grp1">
+      <rect x="222.862" y="319.129" fill="#231815" stroke="#FFFFFF" stroke-miterlimit="10" width="183" height="183" />
+      <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="238.6582" y1="360.5" x2="394.6566" y2="497.4985">
+        <stop offset="0" style="stop-color:#FFF21F" />
+        <stop offset="0.0112" style="stop-color:#FFEF1C" />
+        <stop offset="0.0974" style="stop-color:#FDDC0D" />
+        <stop offset="0.1863" style="stop-color:#FCD103" />
+        <stop offset="0.2809" style="stop-color:#FCCD00" />
+        <stop offset="0.6685" style="stop-color:#F1942E" />
+        <stop offset="0.8876" style="stop-color:#EA652D" />
+        <stop offset="1" style="stop-color:#E5352B" />
+      </linearGradient>
+      <polygon fill="url(#SVGID_1_)" stroke="#FFFFFF" stroke-miterlimit="10" points="372.808,496.354 315.672,467.531 259.537,498.258 
+   269.294,435.012 222.725,391.119 285.89,380.854 313.243,323 342.524,379.902 406,388.039 360.931,433.472 	" />
+    </g>
+    <g id="dice">
+      <path fill="#2EA7E0" stroke="#FFFFFF" stroke-miterlimit="10" d="M689.938,450.716c0,11.79-9.557,21.347-21.347,21.347H568.284
+   c-11.79,0-21.347-9.557-21.347-21.347V350.409c0-11.79,9.557-21.347,21.347-21.347h100.307c11.79,0,21.347,9.557,21.347,21.347
+   V450.716z" />
+      <g>
+        <circle fill="#7E318E" stroke="#FFFFFF" stroke-miterlimit="10" cx="647.813" cy="429.938" r="23" />
+        <circle fill="#7E318E" stroke="#FFFFFF" stroke-miterlimit="10" cx="589.063" cy="371.188" r="23" />
+      </g>
+    </g>
+  </svg>
+
+</body>
+
+</html>

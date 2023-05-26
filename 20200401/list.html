@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ul.demo1{
+      /* list-style-type: decimal; */
+      list-style-image: url("coronavirus.png");
+    }
+
+    ul.demo2{
+      background-color:oldlace;
+      /* list-style-type: none; */
+      font-size: 0;
+    }
+    .demo2>li{
+      background-color: darksalmon;
+      display: inline-block;
+      font-size: 1rem;
+    }
+    .demo2 a{
+      background-color:lightgreen;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    <span>Loremipsum</span><span>dolorsitamet</span><span>consectetur</span>
+  </p>
+  <!-- ul>(li>a)*4 -->
+  <ul class="demo2">
+    <li><a href="#">回首頁</a></li>
+    <li><a href="#">產品介紹</a></li>
+    <li><a href="#">客戶案例</a></li>
+    <li><a href="#">聯絡我們</a></li>
+  </ul>
+  <hr>
+  <!-- ul>li{$$$}*5 -->
+  <ul start="5" class="demo1">
+    <li>001</li>
+    <li>002</li>
+    <li>003</li>
+    <li>004</li>
+    <li>005</li>
+  </ul>
+  <ol start="5">
+    <li>001</li>
+    <li>002</li>
+    <li>003</li>
+    <li>004</li>
+    <li>005</li>
+  </ol>
+</body>
+</html>

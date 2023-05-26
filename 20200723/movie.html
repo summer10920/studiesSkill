@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <form>
+    電影：<select name="mm" id="sm" onchange="chgdd()"></select>
+    日期：<select name="dd" id="sd" onchange="chgtt()"></select>
+    場次：<select name="tt" id="st"></select>
+    <input type="submit" value="確定">
+  </form>
+
+  <script>
+    // $.post("api.php?do=getmovie",function(re){
+    //   console.log(re);
+    // });
+    $.get("api.php", { do: "getmovie" }, function (re) {
+      // data=JSON.parse(re);
+      // console.log(re,typeof(re));
+      // console.log(data,typeof(data));
+      for (const row of re) {
+        $("#sm").append(`<option value="${row.id}">${row['movie']}</option>`);
+      }
+
+      chgdd(); //show date
+
+    }, "json");
+
+    // $.getJSON("api.php?do=getmovie",function(re) {
+    //   console.log(re,typeof(re));
+    // });
+
+    function chgdd() {
+      /*專門負責去查看#sm.val進行ajax翻新到#sd*/
+      let mv = $("#sm").val();
+      $.get("api.php", { do: "getdate", id: mv }, (re) => {
+        // console.log(re);
+        let content = "";
+        for (const row of re) content += `<option value="${row.id}">${row['date']}</option>`;
+        $("#sd").html(content);
+
+        chgtt();//show times
+      }, "json");
+    }
+
+    function chgtt() {
+      // let mv=$("#sm").val();
+      let dv = $("#sd").val();
+      $.get("api.php", { do: "gettime", id: dv }, (re) => {
+        // console.log(re);
+        //這裡後端會把整個該電影日期之資料表傳回來，我們要自己想辦法設計option
+        let sellObj = [
+          { txt: "10:00~12:00", ticket: 20 }, // index 0
+          { txt: "12:00~14:00", ticket: 20 }, // index 1
+          { txt: "14:00~16:00", ticket: 20 },
+          { txt: "16:00~18:00", ticket: 20 },
+          { txt: "18:00~20:00", ticket: 20 },
+          { txt: "20:00~22:00", ticket: 20 },
+          { txt: "22:00~24:00", ticket: 20 }
+        ];
+
+        for (const row of re) {
+          // sellObj[1].ticket-=2;
+          sellObj[row.time - 1].ticket -= row.sellout;
+        }
+
+        let content = "";
+        let count = 0;
+
+        let nowTime = new Date();
+        let selectDay = new Date($("#sd>option:selected").text()); //2020-07-23 string
+        // console.log(selectDay.toDateString()," ~~~ ",nowTime.toDateString());
+
+        //x=>y  : 10=>1,11=>1,12=>2,13=>3,14=>3,15=>3,16=>4,17=>4....
+        let timeLine = Math.floor(nowTime.getHours() / 2) - 4;
+        console.log(timeLine);
+
+        for (const row of sellObj) {
+          count++;
+          if (count <= timeLine && selectDay.toDateString() == nowTime.toDateString()) continue; // each times <= now times && selectday is today
+          content += `<option value="${count}">${row.txt} 剩餘座位 ${row.ticket}</option>`;
+        }
+
+        $("#st").html(content);
+
+
+      }, "json");
+    }
+  </script>
+</body>
+
+</html>

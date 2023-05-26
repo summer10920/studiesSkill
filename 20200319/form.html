@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>表單練習</title>
+</head>
+
+<body>
+<fieldset>
+	<legend>表單介紹</legend>
+	<!-- FORM表單有兩種提交方式，分別是GET與POST -->
+	<!-- 如果表單需要設計傳檔案，必須持有屬性 method="post" enctype="multipart/form-data" -->
+	<form method="post" enctype="multipart/form-data">
+		<table align="center">
+			<tr>
+				<td width="100">帳號：</td>
+				<td><input type="text" name="acc" width="100%" value="guest"></td>
+			</tr>
+			<tr>
+				<td>密碼：</td>
+				<td><input type="password" name="pwd"></td>
+			</tr>
+			<tr>
+				<td>性別：</td>
+				<td>
+					<input type="radio" name="sex" value="1" id="sexb">
+					<label for="sexb">男</label>
+					<input type="radio" name="sex" value="2" id="sexg">
+					<label for="sexg">女</label>
+				</td>
+			</tr>
+			<tr>
+				<td>出生日：</td>
+				<td><input type="date" name="birth"></td>
+			</tr>
+			<tr>
+				<td>聯絡信箱：</td>
+				<td><input type="email" name="email" required></td>
+			</tr>
+			<tr>
+				<td>興趣：</td>
+				<td>
+					<input type="checkbox" name="like[]" id="like_1" value="拍照">
+					<label for="like_1">拍照</label>
+					<input type="checkbox" name="like[]" id="like_2" value="看書">
+					<label for="like_2">看書</label>
+					<input type="checkbox" name="like[]" id="like_3" value="唱歌">
+					<label for="like_3">唱歌</label>
+					<input type="checkbox" name="like[]" id="like_4" value="寫程式" checked>
+					<label for="like_4">寫程式</label>
+					<input type="checkbox" name="like[]" id="like_5" value="逛街">
+					<label for="like_5">逛街</label>
+				</td>
+			</tr>
+			<tr>
+				<td>學歷：</td>
+				<td>
+					<select name="school">
+						<option value="">請選擇</option>
+						<option value="ssr">博士</option>
+						<option value="sr">碩士</option>
+						<option value="s" selected>大學</option>
+						<option value="r">專科</option>
+						<option value="n">高中職以下</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>照片上傳：</td>
+				<td><input type="file" name="pic"></td>
+			</tr>
+			<tr>
+				<td>留言訊息：</td>
+				<td><textarea name="info" cols="30" rows="3">讚！給五星好評</textarea></td>
+			</tr>
+		</table>
+		<hr>
+		<center>
+			<input type="submit" value="送出">
+			<input type="reset" value="重置">
+		</center>
+	</form>
+</fieldset>
+
+</body>
+
+</html>

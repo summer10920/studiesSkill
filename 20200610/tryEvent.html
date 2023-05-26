@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="onclick DEMO" onclick="showmsg('這是從HTML的onclick生成')">
+  <hr>
+  <input type="button" value="onclick" onclick="whatIs(this)">
+  <input type="button" value="onmousedown" onmousedown="whatIs(this)">
+  <input type="button" value="onmouseup" onmouseup="whatIs(this)">
+  <input type="button" value="onmouseover" onmouseover="whatIs(this)">
+  <input type="button" value="onmouseout" onmouseout="whatIs(this)">
+  <input type="text" value="onchange" onchange="whatIs(this)"> <!--變化-->
+  <input type="text" value="onblur" onblur="whatIs(this)"> <!--失焦-->
+  <input type="text" value="onfocus" onfocus="whatIs(this)"> <!--焦點-->
+
+  <hr>
+  <div onclick="whatIs(this)">Touch Me</div>
+
+  <div id="fakeBtn"></div>
+  <hr>
+  <div>你的鍵盤代號為：<span id="keycode"></span></div>
+
+  <script>
+    function showmsg(txt){
+      console.log(txt);
+    }
+
+    function whatIs(e){ //有些人懶到只寫一個字母e做傳遞變數，不可能是this物件
+      if(e.style.color=="red") {
+        // e.style.color=null; //透過物件的方式找到該屬性物件設定為無
+        e.style="font-size:2rem;"; //暴力的將HTML屬性文字做覆蓋
+      }
+      else {
+        // e.style="color:red;font-size:2rem;"; //暴力
+        e.style.color="red";
+        e.style.fontSize="2rem";
+      }
+      console.log(`你剛剛對${e.value}按鈕做了反應`);
+    }
+
+    /*
+      document.getElementById("fakeBtn").innerHTML="假按鈕";
+      document.getElementById("fakeBtn").style="background:gray;display:inline-block;padding:5px;margin:5px;cursor:pointer";
+      document.getElementById("fakeBtn").onclick=function(){
+        alert("is onclick");
+      }
+    */
+
+    let fakeBtn=document.getElementById("fakeBtn");
+    fakeBtn.textContent="假按鈕";
+    fakeBtn.style="background:gray;display:inline-block;padding:5px;margin:5px;cursor:pointer";
+    fakeBtn.onclick=tryclk;
+
+    function tryclk(){
+      alert(fakeBtn.style.backgroundColor);
+    }
+
+    /*鍵盤事件*/
+
+    document.onkeydown=function(){
+      console.log(event.keyCode);
+      document.getElementById("keycode").textContent=event.keyCode;
+    }
+
+
+
+
+
+  </script>
+</body>
+</html>

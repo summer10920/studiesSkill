@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      background: lightgray;
+      height: 500px;
+      width: 600px;
+      display: flex;
+
+      justify-content: flex-start;
+      align-items: stretch;
+      flex-flow: column nowrap;
+    }
+
+    /*子項目 flex's item */
+    /*
+      flex:0 1 auto; 為預設值
+      flex:flex-grow flex-shrink flex-basis
+      flex:膨脹係數 收縮係數 基本空間
+
+      空間優先權
+      flex-basic > width > content
+    */
+
+    .red {
+      background: lightpink;
+      flex-basis: 200px; /* 指在主軸上的空間 */
+      width:100px;
+      height:100px;
+    }
+    .green {
+      background: lightgreen;
+      flex-basis: 200px;
+      width:100px;
+      height:100px;
+    }
+
+    .blue {
+      background: lightskyblue;
+      flex-basis: 200px;
+      width:100px;
+      height:100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item red">R Lorem ipsum dolor sit amet.</div>
+    <div class="item green">G Lorem </div>
+    <div class="item blue">B Lorem ipsum dolor sit amet.</div>
+  </div>
+</body>
+
+</html>

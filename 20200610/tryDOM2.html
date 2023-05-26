@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .clr{
+      color:red;
+    }
+    .bg{
+      background: goldenrod;
+    }
+  </style>
+</head>
+<body>
+  <a href="http://www.google.com" id="alink" title="Google">我是超連結</a>
+  <input type="button" value="我是按鈕" onclick="alert('aaa')" id="abtn">
+
+
+  <script>
+    let nodeA=document.getElementById("alink");
+    let nodeB=document.getElementById("abtn");
+
+    /*
+      nodeA.attributes[0];
+      nodeA.attributes[0].name;
+      nodeA.attributes[0].value;
+      nodeA.attributes[0].value="http://www.momo.com";
+      nodeB.attributes;
+      nodeB.attributes.onclick;
+      nodeB.attributes.onclick.value;
+      nodeB.attributes.onclick.value="alert('BBB')";
+    */
+
+    nodeA.setAttribute("target","_blank");
+
+    nodeB.setAttribute("class","clr bg");
+    nodeB.removeAttribute("class");
+
+  </script>
+</body>
+</html>

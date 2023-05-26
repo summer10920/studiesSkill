@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+</head>
+
+<body class="d-flex justify-content-around align-items-center vw-100 flex-column" style="height: 200vh;">
+  <form class="w-75" method="POST">
+    <div class="card my-5 mx-auto shadow alert-success border-success" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="https://picsum.photos/180/250/?random=1">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputEmail4">Account</label>
+              <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+              <small class="form-text text-muted">請輸入完整帳號，帳號為常用信箱！</small>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword4">Password</label>
+              <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary ">Sign in</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <hr>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">Default checkbox</label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="defaultCheck2" disabled>
+    <label class="form-check-label" for="defaultCheck2">Disabled checkbox</label>
+  </div>
+
+  <label class="form-check">
+    <input class="form-check-input" type="checkbox" checked> Default checkbox
+  </label>
+  <hr>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="sameName" id="ex1" value="option1" checked>
+    <label class="form-check-label" for="ex1">Default radio</label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input position-static" type="radio" name="sameName" id="ex2" value="option2">
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="sameName" id="ex3" value="option3">
+    <label class="form-check-label" for="ex3">Disabled radio</label>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <hr>
+  <label class="form-group d-block">
+    <div class="mb-2">Email address</div>
+    <input type="email" class="form-control" placeholder="name@example.com">
+  </label>
+  <div class="form-group">
+    <label for="LBslt">Example select</label>
+    <select class="form-control form-control-sm" id="LBslt">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="LBslt2">Example multiple select</label>
+    <select multiple class="form-control " id="LBslt2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="LBtxt">Example textarea</label>
+    <textarea class="form-control" id="LBtxt" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="LBfile">Example file input</label>
+    <input type="file" class="form-control-file" id="LBfile">
+  </div>
+  <input class="form-control" type="text" placeholder="Readonly input here..." readonly>
+  <div class="form-group">
+    <label for="LBrange">Example Range input (between 0 ~ 100)</label>
+    <input type="range" class="form-control-range" id="LBrange" min="0" max="100" name="">
+  </div>
+
+  </form>
+
+</body>
+
+</html>

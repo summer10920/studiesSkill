@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BG</title>
+  <style>
+    div{
+      width: 400px;
+      height:300px;
+      background-color: red;
+      /* background: url("https://picsum.photos/120/120/?random=1"); */
+      /* background-repeat: repeat-y; */
+    }
+    .demo0{
+      background-image: url("https://picsum.photos/60/90/?random=1");
+    }
+    .demo1{
+      background-image: url("https://picsum.photos/60/90/?random=1");
+      background-repeat: round;
+    }
+    .demo2{
+      background-image: url("https://picsum.photos/60/90/?random=1");
+      background-repeat: space;
+    }
+    .demo3{
+      background-image: url("https://picsum.photos/60/90/?random=1");
+      /* background-repeat: repeat-x; */
+      background-repeat: round space;
+    }
+    .demo4{
+      background-image: url("https://picsum.photos/60/90/?random=1");
+      background-repeat: no-repeat;
+      /* 
+      background-position-x: right;
+      background-position-y: bottom;
+      background-position: right bottom;
+      background-position: calc(100% + 30px) 50%;
+      */
+      background-position: 50% 50%;
+      /*
+      background-size:120px 120px;
+      */
+      /* background-size:cover; */
+      background-size:contain;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo0"></div>
+  <hr>
+  <div class="demo1"></div>
+  <hr>
+  <div class="demo2"></div>
+  <hr>
+  <div class="demo3"></div>
+  <hr>
+  <div class="demo4"></div>
+</body>
+</html>

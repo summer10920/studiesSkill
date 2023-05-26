@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="row">
+      <img src="yellow.png" class="cell">
+      <img src="yellow.png" class="cell">
+      <img src="yellow.png" class="cell">
+    </div>
+    <div class="row">
+      <img src="yellow.png" class="cell">
+      <img src="yellow.png" class="cell">
+      <img src="yellow.png" class="cell">
+    </div>
+    <div class="row">
+      <img src="yellow.png" class="cell">
+      <img src="yellow.png" class="cell">
+      <img src="yellow.png" class="cell">
+    </div>
+    <div class="control">
+      <div class="msg">
+        <span id="time">剩餘時間:0s</span>
+        <button>遊戲開始</button>
+        <span id="combo">成績分數:0</span>
+      </div>
+      <hr>
+      <strong>遊戲說明</strong>
+      <p>打地鼠遊戲，遊戲開始時請使用鍵盤數字區，點擊畫面對應位置之紅色圖片進行得分(滿分100)。</p>
+      <hr>
+    </div>
+  </div>
+  <script>
+    //初始化 作為全域變數
+    let btn = document.getElementsByTagName("button")[0];
+    btn.addEventListener("click", gamestart);//規劃監聽有人click時觸發FN
+    let time = document.getElementById("time"); //顯示時間的文字標籤
+    let combo = document.getElementById("combo"); //顯示分數的文字標籤
+    let sec = 0, count = 0; //紀載數據的變數
+    let space = document.getElementsByClassName("cell");
+    let beY = new Array();
+
+    //FN 遊戲開始
+    function gamestart() {
+      btn.removeEventListener("click", gamestart);//暫時取消監聽click觸發FN
+      sec = 60, count = 0;
+      time.textContent = `剩餘時間:60s`;
+      combo.textContent = `成績分數:0`;
+      //每秒畫面上的固定變化與遊戲按鈕操作限制
+      let timeRun = setInterval(() => {
+        if (sec == 0) {
+          clearInterval(timeRun);
+          btn.addEventListener("click", gamestart);
+        }
+        else {
+          sec--;
+          time.textContent = `剩餘時間:${sec}s`;
+        }
+      }, 1000);
+      for (let i = 0; i < 100; i++) { //在for的100次內，每一次都是獨立小動物的出場設定
+        let which = Math.floor(Math.random() * 9); //隨機0~8格位置
+        let onTime = Math.floor(Math.random() * 55000); //隨機出現時間點  0~54999ms
+        let delay = Math.floor(Math.random() * 3) + 2; //出場停留時間 2~4秒
+        setTimeout(() => { //該動物於遊戲時間上何時出現
+          showIt(which, delay, i);
+        }, onTime);
+      }
+    }
+    //畫面上的變化
+    function showIt(siWhich, siDelay, siId) {
+      if (space[siWhich].src.replace(/^.*[\\\/]/, '') != "yellow.png") { //當該位置不是黃色時機
+        //要改位置或改時間
+        // let newWhich=(siWhich==8)?0:siWhich+1;  // method 1
+        // let newWhich=(siWhich+1)%9;  // method 2
+        let newWhich = Math.floor(Math.random() * 9); //method 3 隨機算位置
+
+        setTimeout(() => { //時間太快，滿格時會死掉
+          showIt(newWhich, siDelay, siId);
+        }, 100);
+      }
+      else {
+        // 轉 red
+        space[siWhich].src = "red.png";
+        space[siWhich].style.background = "red";
+        space[siWhich].alt = siId;
+        // red 轉 yellow (當用戶未敲時，自己收回去)
+        beY[siId] = setTimeout(() => {
+          space[siWhich].src = "yellow.png";
+          space[siWhich].removeAttribute("style");
+        }, siDelay * 1000);
+      }
+    }
+
+    //鍵盤事件，去(觸發)計算該(轉換代號之)位置是否得分
+    document.onkeydown = kbCode; //每一次的鍵盤按下會執行fn kbCode
+    function kbCode() {
+      // console.log(event.keyCode);
+      switch (event.keyCode) {
+        case 103: getCount(0); break;
+        case 104: getCount(1); break;
+        case 105: getCount(2); break;
+        case 100: getCount(3); break;
+        case 101: getCount(4); break;
+        case 102: getCount(5); break;
+        case 97: getCount(6); break;
+        case 98: getCount(7); break;
+        case 99: getCount(8); break;
+      }
+    }
+
+    //滑鼠事件
+    for(let i=0;i<space.length;i++){
+      space[i].addEventListener("click",()=>{
+        getCount(i);
+      });
+
+      //space[i].addEventListener("click",getCount(i));  error method
+    }
+
+
+    function getCount(item) { //item 0~8
+      if (space[item].src.replace(/^.*[\\\/]/, '') == "red.png") {
+        //轉 green
+        space[item].src = "green.png";
+        space[item].style.background = "green";
+        //得分
+        count++;
+        combo.textContent = `成績分數:${count}`;
+        // green 轉 yellow (當用戶已敲時，自己收回去)
+        setTimeout(() => {
+          space[item].src = "yellow.png";
+          space[item].removeAttribute("style");
+        }, 1000);
+        //清除原先的未敲擊之恢復Y事件
+        id = space[item].alt; //id = 0~99
+        clearTimeout(beY[id]);
+        space[item].removeAttribute("alt");
+      }
+    }
+  </script>
+</body>
+
+</html>

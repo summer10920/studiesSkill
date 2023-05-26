@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <form action="check_q3t5.php" method="post" style="text-align: center;">
+    <h3>預告片清單</h3>
+    <table border="1" style="margin: 0 auto;">
+      <thead>
+        <tr>
+          <td>預告片海報</td>
+          <td>預告片片名</td>
+          <td>播放順序</td>
+          <td>操作</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!--
+          <tr>
+          <td><img src="img/03A01.jpg" width="100"></td>
+          <td>03A01</td>
+          <td>
+            <input type="hidden" name="odr[03A01]" value="5">
+            <input type="button" value="上移" class="up">
+            <input type="button" value="下移" class="down">
+          </td>
+          <td>
+            <input type="checkbox">顯示
+            <input type="checkbox">刪除
+          </td>
+        </tr>
+        -->
+      </tbody>
+    </table>
+    <div style="margin:10px 0"><input type="submit" value="編輯"></div>
+  </form>
+  <script>
+    $.getJSON("data.json", (result) => {
+      for (const item of result.q3t5) {
+        // console.log(item);
+        $("tbody").append(`
+          <tr>
+            <td><img src="${item.img}" width="100"></td>
+            <td>${item.text}</td>
+            <td>
+              <input type="hidden" name="odr[${item.text}]" value="${item.odr}">
+              <input type="button" value="上移" class="up">
+              <input type="button" value="下移" class="down">
+            </td>
+            <td>
+              <input type="checkbox">顯示
+              <input type="checkbox">刪除
+            </td>
+          </tr>
+        `);
+      }
+
+
+      $("input:button").click(function () {
+        // console.log(nodeSelf);
+        let nodeSelf = $(this).parents("tr");
+        let nodeTarget = null;
+
+        switch (this.className) {
+          case "up":
+            nodeTarget = $(this).parents("tr").prev();
+            if (nodeTarget.length) {
+              // valSelf = nodeSelf.find("input:hidden").val();
+              // valSelf--;
+              // nodeSelf.find("input:hidden").val(valSelf);
+              nodeSelf.find("input:hidden").val((idx, value) => { return --value });
+              // valTar = nodeTarget.find("input:hidden").val();
+              // valTar++;
+              // nodeTarget.find("input:hidden").val(valTar);
+              nodeTarget.find("input:hidden").val((idx, value) => { return ++value });
+
+              nodeSelf.insertBefore(nodeTarget);
+            }
+            break;
+          case "down":
+            nodeTarget = $(this).parents("tr").next();
+            if (nodeTarget.length) {
+              nodeSelf.find("input:hidden").val((idx, value) => { return ++value });
+              nodeTarget.find("input:hidden").val((idx, value) => { return --value });
+              nodeSelf.insertAfter(nodeTarget);
+            }
+            break;
+        }
+      });
+    })
+  </script>
+
+</body>
+
+</html>

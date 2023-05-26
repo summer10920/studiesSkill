@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body id="gg">
+
+  <h1 id="title">DOM DEMO PAGE</h1>
+  <ul id="demo">
+    <li class="list">apple</li>
+    <li class="list">banana</li>
+  </ul>
+
+  <script>
+    /*
+      let mytitle=document.getElementById("title"); //將一個DOM以節點變數(obj型態)作為暫存
+      console.log(mytitle.innerHTML,typeof(mytitle.innerHTML));
+  
+      mytitle.innerHTML="HELLO WORLD1";
+      mytitle.textContent="HELLO WORLD2";
+  
+      let myul=document.getElementById("demo");
+      console.log(myul.innerHTML,typeof(myul.innerHTML)); //取得含HTML
+      console.log(myul.textContent,typeof(myul.textContent)); //取得僅有TEXT
+  
+  
+      myul.innerHTML="<li>AAA</li><li>BBB</li>"; //調整HTML(含TEXT)
+      // myul.innerText="只有文字，此寫法發明於IE8但firebox不支援，建議別用，請改用textConet";
+      myul.textContent="<li>CCC</li><li>DDD</li>"; //調整TEXT
+    */
+
+    /*
+      let food = document.getElementsByClassName("list");
+      console.log(food);
+      console.log(food[0]);
+      food[0].innerHTML = "<strong>AAA</strong>";
+    */
+
+    let food2= document.getElementsByTagName("li");
+      console.log(food2);
+      console.log(food2[1]);
+      food2[1].innerHTML = "<strong>BBB</strong>";
+  </script>
+</body>
+
+</html>

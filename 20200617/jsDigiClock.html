@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #333;
+    }
+
+    .clock1 {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 750px;
+      margin: 20vh auto;
+      background: linear-gradient(rgba(238, 174, 202, 0.5), rgba(148, 187, 233, 0.5));
+      padding: 5px;
+    }
+
+    .ck,
+    .cc {
+      display: inline-flex;
+    }
+
+    .ck>div {
+      width: 100px;
+      height: 100px;
+    }
+
+    .cc {
+      width: 50px;
+      height: 100px;
+    }
+
+    .c1,
+    .c2,
+    .c3,
+    .c4,
+    .c5,
+    .c6,
+    .c7,
+    .c8,
+    .c9,
+    .c0,
+    .cc {
+      background: url("digi.jpg");
+    }
+
+    .c0 {
+      background-position: 0px;
+    }
+
+    .c1 {
+      background-position: -100px;
+    }
+
+    .c2 {
+      background-position: -200px;
+    }
+
+    .c3 {
+      background-position: -300px;
+    }
+
+    .c4 {
+      background-position: -400px;
+    }
+
+    .c5 {
+      background-position: -500px;
+    }
+
+    .c6 {
+      background-position: 450px;
+    }
+
+    .c7 {
+      background-position: 350px;
+    }
+
+    .c8 {
+      background-position: 250px;
+    }
+
+    .c9 {
+      background-position: 150px;
+    }
+
+    .cc {
+      background-position: 50px;
+    }
+
+    .clock2 {
+      margin: 0 auto 20vh;
+      width: 600px;
+      height: 300px;
+      background: #eee;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .clock2>#time {
+      font-size: 6rem;
+      margin: 0;
+    }
+
+    .clock2>#date {
+      font-size: 3rem;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="clock1">
+    <div class="ck">
+      <div id="ck1" class="c0"></div>
+      <div id="ck2" class="c1"></div>
+    </div>
+    <div class="cc"></div>
+    <div class="ck">
+      <div id="ck3" class="c2"></div>
+      <div id="ck4" class="c3"></div>
+    </div>
+    <div class="cc"></div>
+    <div class="ck">
+      <div id="ck5" class="c4"></div>
+      <div id="ck6" class="c5"></div>
+    </div>
+  </div>
+  <script>
+    function retime() { //0 1 2 
+      // setTimeout(retime, 1000);
+      let nt = new Date();
+      let
+        n_hur = nt.getHours(),
+        n_min = nt.getMinutes(),
+        n_sec = nt.getSeconds()
+        ;
+      /*
+        //個位數 T
+        let
+          n_hurT = n_hur % 10,
+          n_minT = n_min % 10,
+          n_secT = n_sec % 10
+          ;
+        //十位數 X
+        let
+          n_hurX = Math.floor(n_hur / 10),
+          n_minX = Math.floor(n_min / 10),
+          n_secX = Math.floor(n_sec / 10)
+          ;
+      */
+      let numAry = [
+        Math.floor(n_hur / 10),
+        n_hur % 10,
+        Math.floor(n_min / 10),
+        n_min % 10,
+        Math.floor(n_sec / 10),
+        n_sec % 10,
+      ]
+      /*
+        document.getElementById("ck1").className = "c" + n_hurX;
+        document.getElementById("ck2").className = "c" + n_hurT;
+        document.getElementById("ck3").className = "c" + n_minX;
+        document.getElementById("ck4").className = "c" + n_minT;
+        document.getElementById("ck5").className = "c" + n_secX;
+        document.getElementById("ck6").className = "c" + n_secT;
+      */
+      for (let i = 0; i < 6; i++) document.getElementById("ck" + (i + 1)).className = "c" + numAry[i];
+
+
+      document.getElementsByClassName("cc")[0].style.opacity = 1;
+      document.getElementsByClassName("cc")[1].style.opacity = 1;
+      setTimeout(() => {   // 0.5 1.5 2.5 ...
+        document.getElementsByClassName("cc")[0].style.opacity = 0;
+        document.getElementsByClassName("cc")[1].style.opacity = 0;
+      }, 500);
+    }
+    retime();
+    setInterval(retime, 1000);
+  </script>
+
+  <div class="clock2">
+    <p id="time">12:00:00</p>
+    <p id="date">2222-86-97 AED</p>
+  </div>
+  <script>
+    function chgtime() {
+      let n_day=['SUN','MON','TUS','WED','THR','FRI','SAT'];
+
+      let nt = new Date();
+      let
+        //n_hur = nt.getHours(), //check 0  (3)
+        
+        n_hur = chk0(nt.getHours()), //check 0  (3)補0處理
+        n_min = chk0(nt.getMinutes()), //check 0
+        n_sec = chk0(nt.getSeconds()), //check 0
+        n_yer = nt.getFullYear(),
+        n_mth = chk0(nt.getMonth()+1), //check 0
+        n_dat = chk0(nt.getDate()), //check 0
+        n_key = nt.getDay()
+        ;
+      document.getElementById("time").textContent=`${n_hur}:${n_min}:${n_sec}`;
+      document.getElementById("date").textContent=`${n_yer}-${n_mth}-${n_dat} ${n_day[n_key]}`;
+    }
+    function chk0(num){
+      return (num<10)?"0"+num:num;
+    }
+    chgtime();
+    setInterval(chgtime,1000);
+  </script>
+</body>
+
+</html>

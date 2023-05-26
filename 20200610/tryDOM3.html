@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="list">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li> <!--移除此節點-->
+    <li>4</li>
+  </ul>
+  <script>
+    // document.getElementById("list").removeChild(document.getElementById("list").children[2]);
+    document.getElementById("list").children[2].remove();
+  </script>
+
+
+  <button onclick="add()">按這裡</button>
+  <p id="demo">點這裡</p>
+  <!--當點擊(click)此p元素時，執行fn add()-->
+  <script>
+    function add() {
+      let btn = document.createElement("button"); //create
+      btn.textContent = "AAA"; // set text 
+      document.body.appendChild(btn); //input to html space
+    }
+
+      // document.getElementById("demo").onclick=add();  same as ↓↓↓↓ not work
+      // add();
+      // document.getElementById("demo").onclick=null;
+
+
+      // there all right
+      // document.getElementById("demo").onclick=add;
+
+
+      // document.getElementById("demo").setAttribute("onclick","add()");
+      // document.getElementById("demo").addEventListener("click",add);
+
+      // document.getElementById("demo").onclick=function(){ //一次性使用的匿名函式
+      //   add();
+      // };
+
+      // document.getElementById("demo").onclick=()=>{ //一次性使用的箭頭函式
+      //   add();
+      // };
+
+
+
+
+  </script>
+
+  <!--add here-->
+</body>
+
+</html>

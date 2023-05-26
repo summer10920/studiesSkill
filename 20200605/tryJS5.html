@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常用到的函式</title>
+</head>
+
+<body>
+  <h1>常用到的物件函式</h1>
+  <script>
+    var data = [123, 456, 789];
+    // console.log(data.length);
+
+    data.forEach((val) => {
+      // console.log(val);
+    });
+
+    for (const val of data) {
+      // console.log(val);
+    }
+
+    for (i = 0; i < data.length; i++) {
+      // console.log(data[i]);
+    }
+
+    var txt = "hello world";
+    // console.log(txt.length);
+
+    a = "5";//str
+    b = 100;//num
+    // console.log(typeof(a+3),"is",a+3);
+    console.log(a + 3 + b);
+    console.log(a + (3 + b));
+
+    //8100
+    console.log(Number(a) + 3 + String(b));//type轉換
+
+    //Math
+    Math.round(6.455555);//四捨
+    Math.ceil(6.41111);//進位
+    Math.floor(6.9);//捨去
+    Math.random();//隨機數   0<=?<1
+
+    //0~10
+    // var n=Math.round(Math.random()*10);
+    var n = Math.floor(Math.random() * 11);
+    console.log(n);
+
+    // 0<=X<1   => 0~0
+    // 0<=X<10  => 0~9
+    // 0<=X<11  => 0~10 
+    // 0<=X<55  => 0~54
+
+    // 40~80  min=40,max=80
+    // 0~40 & +=40
+    n = Math.floor(Math.random() * 41 + 40);
+
+    function random(min, max) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    console.log("-------------");
+
+    var time_str=Date(); //get str
+    var time=new Date(); //get obj
+
+    var cTime1=new Date(2019,11,31,23,59,59,500); //月份是0~11
+    var cTime2=new Date("2020-12-31T23:59:59");// ISO8601
+
+    time.getFullYear(); //西元年
+    time.getMonth();//月 0~11
+    time.getDate();//日
+    time.getDay();//星期幾
+    time.getHours();//時
+    time.getMinutes();//分
+    time.getSeconds();//秒
+
+    var beto=(cTime2.getTime()-time.getTime());
+    console.log(beto);
+    beto=Math.floor(beto/1000);
+    console.log(beto);
+
+    // 已知beto= 18102731 (單位秒)，試著印出 x天 y時 z分 k秒
+
+    //Try to coding....
+    let x=Math.floor(beto/(60*60*24));
+    let y=Math.floor(beto%(60*60*24)/(60*60));
+    let z=Math.floor(beto%(60*60*24)%(60*60)/60);
+    let k=Math.floor(beto%(60*60*24)%(60*60)%60);
+
+    console.log(`距離今年跨年只剩下${x}天${y}時${z}分${k}秒`);
+
+    console.log(`-----------------`);
+
+    
+    var now=new Date();
+    var week=["週日","週一","TUE","WED","THR","FRI","SAT"];
+
+    // var tt=now.getFullYear();
+    // tt+=3;
+    // now.setFullYear(tt);
+    // now.setFullYear(now.getFullYear()+3);
+    now.setFullYear(now.getFullYear()+3);
+    console.log(week[now.getDay()]);
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轉場</title>
+  <style>
+    /*
+    transition
+    是指當某個CSS總外觀A突然變成另一個總外觀B時，呈現出來的轉場效果
+    */
+    body {
+      margin: 0;
+      text-align: center;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background: darkseagreen;
+      line-height: 100px;
+      position: relative;
+      /* 
+      transition-property: all;
+      transition-duration: 1s;
+      transition-timing-function: cubic-bezier(0.74, -0.48, 1, 0.27);
+      transition-delay: 0s;
+      */
+      /* transition: all 1s ease 0s; */
+
+
+      /* transition-property: background-color, width;
+      transition-duration: 1s, 3s;
+      transition-timing-function: ease, ease;
+      transition-delay: 0s, 0; */
+      /* transition: background-color 1s ease 0s, width 3s ease 0s; */
+      transition: all 5s ease 0s;
+    }
+
+    .box:hover, .active {
+      background: darkred;
+      width: 200px;
+      transition: all 1s ease 0s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">Befault</div>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="blk" style="width:0;height:0;border-left: 50px solid transparent;border-right:50px solid transparent;border-bottom: 100px solid red;"></div>
+  <hr>
+  <input onclick="clk('a')" type="button" value="正方形">
+  <input onclick="clk('b')" type="button" value="圓形">
+  <input onclick="clk('c')" type="button" value="三角形">
+  <br>
+  <br>
+  Color:<input onchange="chg(this)" type="text">
+
+
+  <script>
+    let node = document.getElementById("blk");
+    let clr="red"; //yellow
+    function clk(pass) {
+      switch (pass) {
+        case 'a':
+          node.style = "width:100px;height:100px;background:"+clr;
+          break;
+        case 'b':
+          node.style = "width:100px;height:100px;background:"+clr+";border-radius:50%";
+          break;
+        case 'c':
+        node.style = "width:0;height:0;border-left: 50px solid transparent;border-right:50px solid transparent;border-bottom: 100px solid "+clr+";";
+          break;
+      }
+    }
+    function chg(e) {
+      // e.value 代表 input:text的value值，也將會是接下來div的顏色
+      clr=e.value;
+
+
+      if(node.style.background!=null)  //只要該node有style設定backgroun任何值，結果為True
+        node.style.background=e.value; //把input的值塞給blk的style之BG色  for 正跟圓
+      else 
+        node.style.borderBottom="100px solid "+e.value; // for 三角
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS選擇器</title>
+  <style>
+    *{
+      font-size: 10px;
+    }
+    h1 {
+      color: red;
+    }
+
+    .clrpink {
+      color: rgb(38, 221, 114);
+    }
+    .small{
+      font-size: 16px;
+    }
+    #green{
+      color:green;
+    }
+    #green, .clrpink {
+      background-color:gray;
+    }
+    h2.blue{
+      color:blue;
+    }
+    h1#aa.bb{
+      color:hotpink
+    }
+
+    /*[div.aqua]的子孫[p]符合*/
+    div.aqua p{
+      color:aqua;
+    }
+    div.goldp>p{
+      color:gold;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Lorem ipsum dolor sit amet.</h1>
+  <h1 class="clrpink">Lorem ipsum dolor sit amet.</h1>
+  <h1 class="clrpink small">Lorem ipsum dolor sit amet.</h1>
+  <h1 class="small">Lorem ipsum dolor sit amet.</h1>
+  <h1 id="green">Lorem ipsum dolor sit amet.</h1>
+  <h1 class="blue">Lorem ipsum dolor sit amet.</h1>
+  <h2 class="blue">Lorem ipsum dolor sit amet.</h2>
+  <h1 id="aa" class="bb">Lorem ipsum dolor sit amet.</h1>
+  <h1 class="aa">Lorem ipsum dolor sit amet.</h1>
+
+  <p>Lorem ipsum dolor sit amet.</p>
+
+  <div>
+    <p>Lorem ipsum dolor sit amet.</p>
+    <div class="goldp aqua">
+      <p>Lorem ipsum dolor sit amet.</p>
+      <div>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+    </div>
+  </div>
+  
+</body>
+
+</html>

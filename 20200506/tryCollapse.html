@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body style="padding:20px;">
+  <div class="accordion" id="papa">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#adzone1">Item #1</button>
+      </div>
+
+      <div id="adzone1" class="collapse show" data-parent="#papa">
+        <div class="card-body">
+          Lorem ipsum dolor sit amet.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#adzone2">Item #2</button>
+      </div>
+      
+      <div id="adzone2" class="collapse" data-parent="#papa">
+        <div class="card-body">
+          Lorem ipsum dolor sit amet.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <hr>
+  <p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#zone1">Toggle first element</a>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#zone2">Toggle second
+      element</button>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".classzone">Toggle both
+      elements</button>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="collapse classzone" id="zone1">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+          keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="collapse classzone" id="zone2">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+          keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#mydemo">
+      Link with href
+    </a>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mydemo">
+      Button with data-target
+    </button>
+    <div class="btn btn-primary" data-toggle="collapse" data-target="#mydemo">touch me!!</div>
+  </p>
+  <div class="collapse" id="mydemo">
+    <div class="border rounded p-3">
+      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim
+      keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    </div>
+  </div>
+</body>
+
+</html>

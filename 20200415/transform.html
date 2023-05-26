@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>變形</title>
+  <style>
+    body{
+      margin:0;
+      text-align: center;
+      color:white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box{
+      width: 100px;
+      height:100px;
+      background: darkseagreen;
+      line-height: 100px;
+      position: relative;
+    }
+    .box::after{
+      content: "After";
+      position: absolute;
+      left:0;
+      top:0;
+      opacity: 0.5;
+      background: darkred;
+      width: 100px;
+      height:100px;
+
+      /*平移*/
+      /* transform: translateX(50%) translateY(50%); */
+      /* transform: translate(50%,50%); */
+      /*縮放*/
+      /* transform: translate(200%) scale(2.5); */
+      /* 
+      transform: translateY(100%) scale(-1);
+      background: linear-gradient(transparent,darkseagreen);
+      */
+
+      /*旋轉*/
+      /* transform: translate(100%) rotate(-90deg); */
+
+      /*歪斜*/
+      /* transform: skew(-45deg); */
+
+      /*變形點 對 偏移無效 */
+      transform: translate(100%) rotate(-90deg);
+      transform-origin: left top;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="box">Befault</div>
+</body>
+</html>

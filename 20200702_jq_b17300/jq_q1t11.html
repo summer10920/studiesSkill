@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+  <form method="post" action="data.json">
+    <p>新增管理者帳號</p>
+    <p>帳號：<input type="text" name="acc"></p>
+    <p>密碼：<input type="password" name="pwd"></p>
+    <p>
+      確認密碼：
+      <input type="password" name="pwdchk">
+      <br>
+      <strong style="color:red">　</strong>
+    </p>
+    <p>
+      <input type="submit" value="新增">
+      <input type="reset" value="重置">
+    </p>
+  </form>
+  <script>
+    $("form").submit(function(){
+      let pa=$("input[name=pwd]"), pb=$("input[name=pwdchk]");
+
+      if(pa.val()!=pb.val()){
+        pb.siblings("strong").text("你的密碼不一致");
+        return false;
+      }
+
+      if(pa.val().length<8){
+        pb.siblings("strong").text("密碼長度最少8位");
+        return false;
+      }
+
+    });
+  </script>
+</body>
+</html>

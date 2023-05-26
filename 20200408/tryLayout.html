@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      width: 1024px;
+      height:768px;
+      background: lightgreen;
+      color:white;
+      font-size: 2rem;
+      font-family: "Microsoft JhengHei";
+
+      /* ver1 
+      position: absolute;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      margin:auto auto;
+      */
+      /* ver2
+      position: absolute;
+      left:50%;
+      top:50%;
+      transform: translate(-50%,-50%);
+       */
+    }
+    /*ver3 start*/
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* height: calc(100vh - 16px); */
+      margin:0;
+      height:100vh;
+    }
+    /*ver3 end*/
+    .header{
+      background: black;
+      height:10%;
+    }
+    .left{
+      background: #333;
+      height: 80%;
+      width: 20%;
+      float: left;
+    }
+    .right{
+      background: #777;
+      height: 80%;
+      width: 80%;
+      float: right;
+    }
+    .footer{
+      background: black;
+      height:10%;
+      clear: both;
+    }
+    /* .header,.left,.right,.footer */
+    .container>div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- div.container>div.*4 -->
+  <div class="container">
+    <div class="header">Header</div>
+    <div class="left">Left</div>
+    <div class="right">Right</div>
+    <div class="footer">Footer</div>
+  </div>
+</body>
+</html>

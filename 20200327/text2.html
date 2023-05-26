@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Break</title>
+  <style>
+    p.demo1{
+      word-break:normal;
+      /*保留單字不特別會去切斷文句，除了"-"跟" "符號可切斷*/
+    }
+    p.demo2{
+      word-break:keep-all;
+      /*保留單字不特別會去切斷文句，除了"-"跟" "符號可切斷*/
+    }
+    p.demo3{
+      word-break: break-all;
+      /*不論如何，遇到邊界都會切斷*/
+    }
+    p.demo4{
+      word-break: break-word;
+      /*前兩者的綜合，除非遇到整個單字已塞滿空間也塞不下才會切斷*/
+    }
+    p{
+      width:8rem;
+      border:1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <p class="demo1">
+    This paragraph contains some text: This line will-breakathyphenatesssss. This paragraph contains some text
+  </p>
+  <p class="demo2">
+    This paragraph contains some text: The lines will-breakathyphenatesssss. This paragraph contains some text
+  </p>
+  <p class="demo3">
+    This paragraph contains some text: The lines will-breakathyphenatesssss. This paragraph contains some text
+  </p>
+  <p class="demo4">
+    This paragraph contains some text: The lines will-breakathyphenatesssss. This paragraph contains some text
+  </p>
+</body>
+
+</html>

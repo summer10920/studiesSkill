@@ -1,0 +1,18 @@
+.row > * {
+  background: #ccc;
+  border: 2px solid #aaa;
+  margin-bottom: 5px;
+  min-height: 50px;
+}
+.row {
+  opacity: 1;
+  /* 
+  height:300px;
+  background: lightsalmon;
+  border:1px solid #a00;
+  */
+}
+.bd-highlight {
+  background-color: rgba(86, 61, 124, 0.15);
+  border: 1px solid rgba(86, 61, 124, 0.15);
+}

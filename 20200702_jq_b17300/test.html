@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <!--正中央-->
+  <div style="width:100%; padding:2px; height:290px;">
+    <div id="mwww" loop="true" style="width:100%; height:100%;">
+      <div style="width:99%; height:100%; position:relative;" class="cent">沒有資料</div>
+    </div>
+  </div>
+  <script>
+    let json = {
+      "q1t5": [
+        "img/01C01.gif",
+        "img/01C02.gif",
+        "img/01C03.gif",
+        "img/01C04.gif"
+      ]
+    }
+    // var lin = new Array();
+    var lin = [];
+    var now = 0;
+
+    if(lin.length) ww(); //判斷有資料我們才會立刻偷跑一次
+    if (lin.length > 1) {
+      setInterval("ww()", 3000);
+      now = 1;
+    }
+
+    function ww() {
+      $("#mwww").html("<embed loop=true src='" + lin[now] + "' style='width:99%; height:100%;'></embed>")
+      now++;
+      if (now >= lin.length)
+        now = 0;
+    }
+  </script>
+
+</body>
+
+</html>
