@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="demo">按這裡</p>
+    <ul id="myList">
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
+
+    <script>
+      function add() {
+        var newbtn=document.createElement("button");
+        newbtn.textContent="YA";
+        document.body.appendChild(newbtn);
+
+      }
+
+      function my(){
+        var chg=document.getElementById("myList");
+
+      }
+
+      document.getElementById("demo").onclick = add;
+    </script>
+  </body>
+</html>

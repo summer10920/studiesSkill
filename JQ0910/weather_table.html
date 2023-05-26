@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!--DT style
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/datatables.min.js"></script>
+    -->
+
+    <!-- BS style without BS's framework
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    -->
+
+    <!--BS style-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.20/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/dt-1.10.20/datatables.min.js"></script>
+
+
+  </head>
+  <body>
+    <div style="width:75vw">
+      <h1>36H天氣預報</h1>
+      <table id="dt" class="table table-dark table-hover">
+        <thead><tr><th>編號</th><th>地區</th><th>時間1</th><th>時間2</th><th>時間3</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      $.getJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=CWB-77F7EF76-6578-458C-ACDF-72ABF4BE7727&downloadType=WEB&format=JSON")
+        .done(function(re) {
+          let data;
+          // console.log(re);
+          //資料初始化
+          data = re.cwbopendata.dataset.location;
+          /*三時段的時間物件，方便之後抽取對應時間單位*/
+          let date1=new Date(data[0].weatherElement[0].time[0].startTime);
+          let date2=new Date(data[0].weatherElement[0].time[1].startTime);
+          let date3=new Date(data[0].weatherElement[0].time[2].startTime);
+          /*三時段的圖片類型白天/夜晚*/
+          let state1=(6<=date1.getHours()&&date1.getHours()<18)?"day":"night";
+          let state2=(6<=date2.getHours()&&date2.getHours()<18)?"day":"night";
+          let state3=(6<=date3.getHours()&&date3.getHours()<18)?"day":"night";
+          /*hour's num to cht's string*/
+          let hrst=new Array();
+          hrst[0]="凌晨";
+          hrst[6]="白天";
+          hrst[12]="下午";
+          hrst[18]="晚上";
+          /*DOM to table's title*/
+          $("thead").find("th").eq(2).text(`${date1.getMonth()+1}/${date1.getDate()} ${hrst[date1.getHours()]}`);
+          $("thead").find("th").eq(3).text(`${date2.getMonth()+1}/${date2.getDate()} ${hrst[date2.getHours()]}`);
+          $("thead").find("th").eq(4).text(`${date3.getMonth()+1}/${date3.getDate()} ${hrst[date3.getHours()]}`);
+          let print="";
+          /*處理各縣市的天氣變成tr>td*/
+          for(let i=0;i<data.length;i++){
+            print+=`
+              <tr>
+                <td>${i+1}</td>
+                <td>${data[i].locationName}</td>
+                <td>
+                  <img src="img/${state1}/${data[i].weatherElement[0].time[0].parameter.parameterValue}.svg">
+                  ${data[i].weatherElement[0].time[0].parameter.parameterName} | 溫度 
+                  ${data[i].weatherElement[2].time[0].parameter.parameterName}
+                  ℃ ~ 
+                  ${data[i].weatherElement[1].time[0].parameter.parameterName}
+                  ℃
+                </td>
+                <td>
+                  <img src="img/${state2}/${data[i].weatherElement[0].time[1].parameter.parameterValue}.svg">
+                  ${data[i].weatherElement[0].time[1].parameter.parameterName} | 溫度 
+                  ${data[i].weatherElement[2].time[1].parameter.parameterName}
+                  ℃ ~ 
+                  ${data[i].weatherElement[1].time[1].parameter.parameterName}
+                  ℃
+                </td>
+                <td>
+                  <img src="img/${state3}/${data[i].weatherElement[0].time[2].parameter.parameterValue}.svg">
+                  ${data[i].weatherElement[0].time[2].parameter.parameterName} | 溫度 
+                  ${data[i].weatherElement[2].time[2].parameter.parameterName}
+                  ℃ ~ 
+                  ${data[i].weatherElement[1].time[2].parameter.parameterName}
+                  ℃
+                </td>
+              </tr>
+            `;
+          }
+          $("tbody").html(print);
+          $('#dt').DataTable();
+        })
+        .fail(function() {
+          console.log("get api fail");
+        });
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="plugins/jquery-3.4.1.min.js"></script>
+    <style>
+      .red {
+        width: 100px;
+        height: 100px;
+        background: red;
+      }
+      .green {
+        width: 100px;
+        height: 100px;
+        background: green;
+      }
+      .blue {
+        width: 100px;
+        height: 100px;
+        background: blue;
+      }
+      .orange{
+        width: 100px;
+        height: 100px;
+        background: orange;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <button>RED-OFF</button><button>RED-ON</button><button>RED-SW</button>
+    </p>
+    <div class="red"></div>
+    <p>
+      <button>GREEN-OFF</button><button>GREEN-ON</button><button>GREEN-SW</button><button>GREEN-A</button><button>GREEN-B</button>
+    </p>
+    <div class="green"></div>
+    <p>
+      <button>BLUE-OFF</button><button>BLUE-ON</button><button>BLUE-SW</button><button>BLUE-STOP</button>
+    </p>
+    <div class="blue"></div>
+    <p>
+      <button>ORANGE</button>
+    </p>
+    <div class="orange"></div>
+
+    <script>
+      $(document).ready(() => {
+        $("button:contains(RED-OFF)").click(() => {
+          // $(".red").css("display","none");
+          $(".red").hide("fast");
+        });
+        $("button:contains(RED-ON)").click(() => {
+          $(".red").show("slow");
+        });
+        $("button:contains(RED-SW)").click(() => {
+          $(".red").toggle(5000, function() {
+            alert("done");
+          });
+        });
+
+        $("button:contains(GREEN-OFF)").click(() => {
+          $(".green").fadeOut();
+        });
+        $("button:contains(GREEN-ON)").click(() => {
+          $(".green").fadeIn("slow");
+        });
+        $("button:contains(GREEN-SW)").click(() => {
+          $(".green").fadeToggle(1000);
+        });
+        $("button:contains(GREEN-A)").click(() => {
+          $(".green").fadeTo(1000, 0.5);
+        });
+        $("button:contains(GREEN-B)").click(() => {
+          $(".green").fadeTo(1000, 1);
+        });
+
+        $("button:contains(BLUE-OFF)").click(() => {
+          // $(".red").css("display","none");
+          $(".blue").slideUp("fast");
+        });
+        $("button:contains(BLUE-ON)").click(() => {
+          $(".blue").delay(3000).slideDown("slow");
+        });
+        $("button:contains(BLUE-SW)").click(() => {
+          $(".blue").slideToggle(5000, function() {
+            alert("done");
+          });
+        });
+        $("button:contains(BLUE-STOP)").click(() => {
+          $(".blue").stop();
+        });
+
+        $("button:contains(ORANGE)").click(() => {
+          $(".orange").animate({
+            "width":"0px",
+            "opacity":"0",
+            "left":"200px"
+          },2000,()=>{
+            $(".orange").removeAttr("style");
+            // $(".orange").css("display","none");
+            $(".orange").hide();
+          });
+        });
+
+
+      });
+    </script>
+  </body>
+</html>

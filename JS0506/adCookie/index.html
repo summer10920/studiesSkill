@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <style>
+    body{
+      margin:0;
+      overflow: hidden;
+    }
+    #adFull{
+      background: #00000077;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .adClose{
+      border:3px solid black;
+      border-radius: 1rem;
+      line-height: 0;
+      background: #eee;
+      display: inline-block;
+      position: absolute;
+      align-self: flex-end;
+      margin: -5px 5px;
+    }
+    .adClose:hover{
+      background: #ccc;
+    }
+    #adContent{
+      cursor: pointer;
+      display: flex;
+      flex-flow: column;
+    }
+    #adContent>img{
+      max-width: calc(100vw - 3.75rem);
+      max-height: calc(100vh - 3.75rem);
+    }
+    </style>
+  </head>
+  <body>
+    <div id="adFull">
+      <div id="adContent">
+        <img src="ad.png"/>
+        <div class="adClose"><i class="material-icons">close</i></div>
+      </div>
+    </div>
+
+<script>
+      document.getElementById("adFull").onclick=ad_close; //綁定onclick等於函式，不要加()不然會直接觸發
+      document.getElementById("adContent").getElementsByTagName("img")[0].onclick=ad_goto;
+      // document.getElementById("adClose").onclick=ad_close; //不用寫因為父層的onclick有繼承到
+
+      var needCook=findcook("watchedAd");
+      if(!needCook){ //還沒有產生cookie，代表第一次拜訪，我們需要產生有壽命的cookie
+        deadtime=new Date();
+        // deadtime.setHours(23),deadtime.setMinutes(59),deadtime.setSeconds(59);
+        deadtime.setHours(23,59,59);  //可以濃縮HMS到H函式
+        document.cookie="watchedAd=visitd; expires="+deadtime.toUTCString();
+      }
+      else{ //cookie存在，代表已看過，我們要主動把廣告關掉或是刪掉
+        // ad_close(); //執行 display:none
+        document.getElementById("adFull").remove(); //殺掉
+      }
+
+    function ad_close(){
+      document.getElementById("adFull").style.display="none";
+    }
+    function ad_goto(){
+      window.open("https://www.google.com/","_blank");
+    }
+    function findcook(name){
+      var cookAry=document.cookie.split("; ");
+      var getCook=cookAry.find(function(e){
+        return (name+"=") === e.substr(0,name.length+1);
+      });
+      if(getCook!=undefined) return getCook.split("=")[1];
+      else return false;
+    }
+    
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div
+      id="myblock"
+      style="width:100px;height:100px;background-color: red;"
+    ></div>
+    <hr />
+    <input type="button" value="正方形" onclick="trans('A')" />
+    <input type="button" value="圓形" onclick="trans('B')" />
+    <input type="button" value="三角形" onclick="trans('C')" />
+    <p>Color Code: <input type="text" onchange="color(this.value)" /></p>
+
+    <script>
+      var zone = document.getElementById("myblock");
+      var clr = zone.style.backgroundColor; //red
+      function trans(re) {
+        switch (re) {
+          case "A":
+            zone.style = "width:100px;height:100px;background-color:" + clr;
+            break;
+          case "B":
+            zone.style =
+              "width:100px;height:100px;background-color:" +
+              clr +
+              ";border-radius: 50px;";
+            break;
+          case "C":
+            zone.style =
+              "width:0;height:0;border-left: 50px solid transparent;border-right: 50px solid transparent;border-bottom: 100px solid " +
+              clr +
+              ";";
+            break;
+        }
+      }
+      function color(re) {
+        zone.style.backgroundColor = re; //目前的顏色換掉
+        clr = re; //把所有的色變數更新一下
+      }
+    </script>
+  </body>
+</html>

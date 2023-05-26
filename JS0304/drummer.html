@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>進擊的鼓手！</title>
+  </head>
+  <body>
+    <script>
+      var myrock = new Audio();
+
+      document.onkeydown=function(){
+        // console.log(event.keyCode);
+        switch (event.keyCode) {
+          case 65: //A
+            myrock.src = "sounds/boom.wav";
+            myrock.play();
+            break;
+          case 83: //S
+            myrock.src = "sounds/clap.wav";
+            myrock.play();
+            break;
+          case 68: //D
+            myrock.src = "sounds/hihat.wav";
+            myrock.play();
+            break;
+          case 70: //F
+            myrock.src = "sounds/kick.wav";
+            myrock.play();
+            break;
+          case 71: //G
+            myrock.src = "sounds/openhat.wav";
+            myrock.play();
+            break;
+          case 72: //H
+            myrock.src = "sounds/ride.wav";
+            myrock.play();
+            break;
+          case 74: //J
+            myrock.src = "sounds/snare.wav";
+            myrock.play();
+            break;
+          case 75: //K
+            myrock.src = "sounds/tink.wav";
+            myrock.play();
+            break;
+          case 76: //L
+            myrock.src = "sounds/tom.wav";
+            myrock.play();
+            break;
+        }
+      }
+      // document.onkeydown = getcode;
+    </script>
+  </body>
+</html>

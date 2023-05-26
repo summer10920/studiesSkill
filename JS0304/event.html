@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <!-- <input type="button" value="Onclick DEMO" onclick="alert('On-Click')"> -->
+    <input type="button" value="Event DEMO" onclick="showAlert('Loki')" onmouseover="showAlert('Candy')"/>
+    <span style="cursor: pointer;" onclick="showAlert('SPAN')">按我!</span>
+    <hr>
+    <input id="test" type="button" value="onclick" onclick="whatis(this)">
+    <input id="test" type="button" value="onmousedown" onmousedown="whatis(this)">
+    <input id="test" type="button" value="onmouseup" onmouseup="whatis(this)">
+    <input id="test" type="button" value="onmouseover" onmouseover="whatis(this)">
+    <input id="test" type="button" value="onmouseout" onmouseout="whatis(this)">
+
+    <input type="text" value="onchange" onchange="whatis(this)">
+    <input type="text" value="onfocus" onfocus="whatis(this)">
+    <input type="text" value="onblur" onblur="whatis(this)">
+
+    <div id="fakebtn"></div>
+    
+    <script>
+      function showAlert(meg) {
+        alert("Hello! " + meg);
+      }
+
+      function whatis(e){
+        // console.log(e);
+        //ver1
+        // e.style.color="red";
+        // e.style.fontSize="2em";
+        // if(e.style.color.length==0){
+        if(e.style.length==0){
+          // ver2
+          e.style="color:red;font-size:2em";
+          console.log(`你剛剛進行了${e.value}的事件`);
+        }
+        else{
+          // e.style.color=null;
+          // e.style.fontSize=null;
+          e.style=null;
+        }
+      }
+
+      var fake_btn=document.getElementById("fakebtn");
+      fake_btn.style="background: darkgoldenrod;cursor: pointer;box-shadow: 2px 2px 7px #333;padding: 5px;display: inline-block;margin: 10px;border-radius: 5px;color: white;";
+      fake_btn.textContent="俺是按鈕";
+
+      fake_btn.onclick=function(){
+        alert(fake_btn.style.background);
+      };
+
+      function getcode(){
+        // console.log(event.keyCode);
+        switch (event.keyCode) {
+          case 65: //A
+            console.log("←");
+          break;
+          case 68: //D
+            console.log("→");
+          break;
+          case 87: //W
+            console.log("↑");
+          break;
+          case 83: //S
+            console.log("↓");
+          break;
+          case 78: //N
+            console.log("B");
+          break;
+          case 77: //M
+            console.log("A");
+          break;
+        }
+      }
+      document.onkeydown=getcode;
+
+
+    </script>
+  </body>
+</html>

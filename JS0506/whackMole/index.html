@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body{
+        margin:0;
+        display: flex;
+        justify-content: center;
+        height:100vh;
+        text-align: center;
+      }
+      .content{
+        display:flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+      }
+      .cell{
+        background: yellow;
+        border:5px solid #6bd1eb;
+        cursor: pointer;
+        width:100px;
+        height:100px;
+      }
+      .control{
+        max-width:350px;
+      }
+      .msg{
+        margin:5px auto;
+        display: flex;
+        justify-content: space-around;
+        line-height: 2rem;
+      }
+      button,span{
+        width:33%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <!-- (div.row>img:s*3)*3+div.control>(div.msg>span#time+btn+span#combo)+hr+b+p+hr -->
+<div class="row">
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(0)"/>
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(1)"/>
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(2)"/>
+</div>
+<div class="row">
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(3)"/>
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(4)"/>
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(5)"/>
+</div>
+<div class="row">
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(6)"/>
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(7)"/>
+  <img src="yellow.png" class="cell" title="yellow" onclick="getcount(8)"/>
+</div>
+      <div class="control">
+        <div class="msg">
+          <span id="time">剩餘時間:0s</span>
+          <button>遊戲開始</button>
+          <span id="combo">成績分數:0</span>
+        </div>
+        <hr />
+        <b>遊戲說明</b>
+        <p>打地鼠遊戲，請點擊紅色圖片獲得分數(滿分100)</p>
+        <hr />
+      </div>
+    </div>
+    <script>
+      //初始化
+      var btn=document.getElementsByTagName("button")[0]; //button
+      var time=document.getElementById("time"); //找到時間
+      var combo=document.getElementById("combo"); //找到分數
+      var animal=document.getElementsByClassName("cell");
+      var flag=0; //判別遊戲狀況 停止0 遊戲中1
+      var sec=0,count=0;
+      var beYellow=new Array(); //到時候會存放所有red事件的轉黃定時器，陣列有100個位置
+      btn.addEventListener("click",gamestart); //規劃點選動作
+
+      function gamestart(){ //遊戲開始
+        sec=60,count=0,flag=1;
+        time.textContent=`剩餘時間:${sec}`;
+        combo.textContent=`成績分數:${count}`;
+        btn.removeEventListener("click",gamestart); //關閉btn，不要再讓人去按他觸發多餘的gamestart()
+
+        let start=setInterval(()=>{ //控制倒數以及遊戲區間的隔離(按鈕)
+          if(sec==0){
+            clearInterval(start);
+            flag=0;
+            btn.addEventListener("click",gamestart);//開啟btn
+          }
+          else{
+            sec--;
+            time.textContent=`剩餘時間:${sec}`;
+          }
+        },1000);
+        
+        for(let i=0;i<100;i++){//產生100組紅色事件 
+          let ontime=Math.floor(Math.random()*57000); //隨機0~56999 ms
+          let which=Math.floor(Math.random()*9);  //隨機0~8處
+          let delay=Math.floor(Math.random()*3)+2; //隨機2~4秒
+
+          setTimeout(function(){
+            showit(which,delay,i);
+          },ontime);
+        }
+      }
+function showit(siWhich,siDelay,siId){ //在指定的siWhitch位置變成red事件
+  if(animal[siWhich].title!="yellow"){ //你不是等待(yellow)狀態，就不要塞紅色
+    // let next=(siWhich==8)?0:siWhich+1; //寫法1
+    // let next=(siWhich+1)%9; //寫法2
+    let next=Math.floor(Math.random()*9);  //隨機0~8處
+
+    setTimeout(function(){
+      showit(next,siDelay,siId);
+    },100);
+  }
+  else{ //確定該位置是黃色，可以進行紅色事件
+    animal[siWhich].src="red.png";
+    animal[siWhich].style.background="red";
+    animal[siWhich].title="red";
+    animal[siWhich].alt=siId;
+
+    beYellow[siId]=setTimeout(() => { //red多久之後自己變回yellow
+      animal[siWhich].src="yellow.png";
+      animal[siWhich].style.background=null;
+      animal[siWhich].title="yellow";
+      animal[siWhich].alt=null;
+    }, siDelay*1000);
+  }
+}
+
+function getcount(who) { // 計分且將紅色變綠色  who=0~8
+  if(animal[who].title=="red"&&flag==1){ //確定是遊戲中的紅色事件
+    animal[who].src="green.png";
+    animal[who].style.background="green";
+    animal[who].title="green";
+
+    /*加分*/
+    count++;
+    combo.textContent=`成績分數:${count}`;
+
+    id=animal[who].alt;
+    clearTimeout(beYellow[id]); //清除原先路線的轉黃定時器
+    animal[who].alt=null;
+
+    setTimeout(() => { //green 1秒之後自己變回yellow
+      animal[who].src="yellow.png";
+      animal[who].style.background=null;
+      animal[who].title="yellow";
+    }, 1000);
+  }
+}
+
+      document.onkeydown=keyboard;//每次的鍵盤動作都會送到keyboard函式
+      function keyboard(){
+          switch (event.keyCode) {
+            case 103: getcount(0);break;
+            case 104: getcount(1);break;
+            case 105: getcount(2);break;
+            case 100: getcount(3);break;
+            case 101: getcount(4);break;
+            case 102: getcount(5);break;
+            case 97: getcount(6);break;
+            case 98: getcount(7);break;
+            case 99: getcount(8);break;
+          }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .hot {
+        color: red;
+      }
+      .cold {
+        color: blue;
+      }
+    </style>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <script src="plugins/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // window.onload=()=>{
+      //   alert($("#four").text());
+      // }
+      $(document).ready(function() {
+        
+        $("#btn").on("click",function(){
+          console.log("click1");
+        });
+        $("#btn").click(function(){
+          console.log("click2");
+        });
+
+        $("#send").on("submit",function(){
+          alert("submit1");
+        });
+        $("#send").submit(function(){
+          alert("submit2");
+        });
+
+        $("#three").on("mouseover",function(){
+          alert("mouseover");
+        });
+        $("#three").hover(function(){
+          alert("hover");
+        });
+      });
+      
+    </script>
+    <div id="page" style="width:500px;position: relative;">
+      <h1 id="header">My JQ Demo List</h1>
+      <h2>我的代辦事項</h2>
+      <ul>
+        <li id="one" class="hot"><b>買</b>午餐</li>
+        <li id="two" class="hot">練程式</li>
+        <li id="three" class="hot">看影片</li>
+        <li id="four">洗洗睡</li>
+      </ul>
+      <p style="margin-left:500px;">JQ的特色可以大概分類出幾大特色，分別是</p>
+      <ol>
+        <li>DOM非常方便快速</li>
+        <li>AJAX使用快且方便</li>
+        <li>帶effect特效</li>
+      </ol>
+    </div>
+    <input type="text" name="student" value="loki" />
+    <input type="text" name="math" value="99" />
+    <input type="button" id="btn" value="假按鈕" />
+    <form id="send">
+      <input type="submit" value="送出" />
+  </form>
+    <textarea name="mytext">11111</textarea>
+    <p>
+      <input type="checkbox" name="a1" value="1" />1
+      <input type="checkbox" name="a2" value="2" />2
+      <input type="checkbox" name="a3" value="3" />3
+    </p>
+    <a href="http://www.google.com/" title="123" alt="789">Go To Google</a>
+    <a href="http://www.google.com/" title="456" alt="998">Go To Google</a>
+  </body>
+</html>

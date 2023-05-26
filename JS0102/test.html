@@ -1,0 +1,12 @@
+<script>
+  // document.write() 寫出99乘法表，不要求版型好看，看得懂就好。
+  // for迴圈會用到，可以的話請用一個for完成
+
+  for(let i=1,j=1;i<10;j++){
+    document.write(`${i}*${j}=${i*j}<br>`);
+    if(j==9){
+      i++,j=0;
+      document.write("<hr>");
+    }
+  }
+</script>

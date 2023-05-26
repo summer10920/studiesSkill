@@ -1,0 +1,38 @@
+body {
+  background: #358;
+  color: white;
+  width: 100vw;
+  text-align: center;
+  margin: 0;
+}
+#main {
+  margin: 0 auto;
+  width: 50vw;
+}
+.control {
+  width: 400px;
+  margin: 0px auto;
+}
+.control img {
+  height: 100px;
+  margin:5px;
+}
+#zone {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  margin: 0px auto;
+}
+#zone > .lists {
+  position: relative;
+  overflow: hidden;
+}
+#zone img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+#zone p {
+  margin: 5px;
+}

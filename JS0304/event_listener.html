@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <input type="button" value="Touch Me" id="ock">
+  <input type="button" value="Clear MouseOver'event" onclick="clr()">
+
+
+  <script>
+    var mybtn=document.getElementById("ock");
+    mybtn.addEventListener("click",function(){  // click
+      alert("it's a click event!!");
+    });
+
+    mybtn.addEventListener("mouseover",myfun1);
+    mybtn.addEventListener("mouseover",myfun2);
+
+    function myfun1() {
+      console.log("it's a mouseover for fun1");
+    }
+    function myfun2() {
+      console.log("it's a mouseover for fun2");
+    }
+
+
+    function clr(){
+      mybtn.removeEventListener("mouseover",myfun1);
+      mybtn.removeEventListener("mouseover",myfun2);
+      // mybtn.removeEventListener("click");  一定失敗，因為沒有辦法找到該函式去清除掉
+    }
+
+
+  </script>
+
+
+
+</body>
+</html>

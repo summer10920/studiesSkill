@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>跨年計算</title>
+  </head>
+  <body>
+    <h1>請打開chorme.console工具</h1>
+    <script>
+      var s_time = new Date();
+      var e_time = new Date("2019-12-31T23:59:59");
+
+      var tmin = s_time.getTime(); //Unix timestamp 單位毫秒
+      var tmax = e_time.getTime(); //Unix timestamp 單位毫秒
+
+      var btw=(tmax-tmin)/1000; //還剩下多少秒   ex 3425546.234 seconds
+
+      //3425546/60取餘數 => bsec
+      bsec=Math.floor(btw%60);  //3425546.234%60=26.234
+
+      // bmin= (3425546-26)/60   //  3425546/60=>57092.433333333335
+      // bmin= (Math.floor(3425546/60))%60;   //3425546/60=>57092.433333333335
+      bmin= Math.floor((btw/60)%60);                // 57092.433333333335%60 <=> 57092%60  + 0.43333333335
+      bhur= Math.floor((btw/60/60)%24);
+      bday= Math.floor(btw/60/60/24);
+
+      console.log(`距離跨年還剩下${bday}天${bhur}時${bmin}分${bsec}秒!!!`);
+    </script>
+  </body>
+</html>

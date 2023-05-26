@@ -1,0 +1,23 @@
+<script>
+  /*
+  function boom(){
+    alert("爆炸一聲，你已經死了");
+  }
+
+  ttt=setTimeout(boom,5000);
+  var ans=confirm("有個炸彈五秒後爆炸，你是否要解除他！");
+  if(ans) clearTimeout(ttt);
+  */
+
+  var i=0;
+
+  function reply(){
+    console.log(i);
+    i++;
+
+    if(i==10) clearInterval(uuu);
+  }
+
+  var uuu=setInterval(reply,1000);
+
+</script>

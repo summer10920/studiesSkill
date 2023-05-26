@@ -1,0 +1,1 @@
+SELECT * FROM ch6_crud;

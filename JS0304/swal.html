@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
+    <script src="sweetalert2.all.min.js"></script>
+  </head>
+  <body>
+    <script>
+      function show() {
+        Swal.fire({
+          title: "請輸入名稱",
+          input: "text",
+          inputValue: "大俠",
+          showCancelButton: true,
+          confirmButtonText: '好der',
+          cancelButtonText: '取消',
+          showLoaderOnConfirm: true
+        }).then(function(result){
+          // console.log(result);
+          Swal.fire('你好，'+result.value);
+        });
+      }
+      show();
+    </script>
+  </body>
+</html>
